@@ -6,12 +6,8 @@ It's a great way to let a broader set of people get exposed to your work and hel
 1. Confirm your paper(s) are a good fit to write a blog post for (see requirements [here](https://docs.google.com/document/d/1PWuruWbudrAwTI_iJYC-ZkjAd-hILcisL9Ao_VOUtx4/edit?usp=sharing)). You are encouraged to email the [editors](http://ai.stanford.edu/blog/about/) confirm your paper is a good fit and ask any quetsions. 
 2. Get a draft of your post in Google doc, and email the [editors](http://ai.stanford.edu/blog/about/)  to get an editor assigned to the draft. More detailed instructions on that [here](https://docs.google.com/document/d/1PWuruWbudrAwTI_iJYC-ZkjAd-hILcisL9Ao_VOUtx4/edit?usp=sharing). 
 3. One or two editors will help you finalize the draft with feedback. Once you have a draft that is finalized, you need to create a pull request with markdown and images of your post. First, fork the repo, clone the fork and pull source branch
-4. [Install Jekyll](https://jekyllrb.com/docs/installation/)
-5. Run bundle install in the root dir (NOTE: if you have any issues with installation, feel free to ask SAIL Blog editors to help)
-6. Try running './scripts/serve_jekyll' in terminal, and go to the link printed in console in browser
-7. If all looks good, go to \_posts and follow examples of prior posts in writing
-a new one in the right format. To convert from Google doc to markdown, you can download as docx and use pandoc (and also download as webpage to get images, and add back in), or do it manually.
-8. Once it all looks good, submit a pull request and email your editor to let them know, and it'll be posted on the site fairly promptly.
+4. Follow [these instructions](https://docs.google.com/document/d/1zE6GyVmlAa04mGX9QF9Ip05VVJq4RUnKmlVaUqub9as/edit?usp=sharing) to convert your post from google doc to markdown and submit a pull request. 
+5. Once you've submitted a pull request and email your editor to let them know, we'll typically merge it within a few days and publicize via our mailing list and Twitter. Feel free to request specific wording for the tweet promoting it.
 
 ### Formatting Tips
 
