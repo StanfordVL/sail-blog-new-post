@@ -5,12 +5,12 @@ short-summary: "We show that when ML
 models use noisy features, they're incentivized to devalue a good score
 when the candidate is from a lower-performing group."
 summary: "Discriminatory behavior towards certain groups by machine learning (ML)
-models is especially concerning in critical applications such as hiring.
+models is concerning in critical applications such as hiring.
 We show that when ML
 models use noisy features, they're incentivized to devalue a good score
 when the candidate is from a lower-performing group."
-feature-img: "{{ site.baseurl }}/assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image7.png"
-thumbnail: "{{ site.baseurl }}/assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image7.png"
+feature-img: "assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image7.png"
+thumbnail: "assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image7.png"
 author: <a href="https://fereshte.people.stanford.edu/">Fereshte Khani</a>
 tags: [ML]
 ---
