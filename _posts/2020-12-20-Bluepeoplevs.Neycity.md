@@ -69,7 +69,7 @@ where  \\(\sigma_\text{noise}^2\\) indicates the variance of noise
 on the exam.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image11.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image11.png"/>
 *The exam score of an individual with a skill of \\(z\\) is a random variable normally distributed with a mean of  \\(z\\) and a standard deviation of  \\(\sigma_\text{noise}\\).*
 {% endfigure %} 
 
@@ -105,7 +105,7 @@ example, a threshold of  \\(\tau=1\\) leads to minimum error.
 
 {% figure %}
 <img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image1.png"/>
-*A simple example with  \\(\mu=-1\\) and  \\(\sigma_\text{skill}=\sigma_\text{noise}=1\\). As shown on the right, accepting individuals with a score higher than  \\(0\\) does not result in the minimum error. *
+*A simple example with  \\(\mu=-1\\) and  \\(\sigma_\text{skill}=\sigma_\text{noise}=1\\).As shown on the right, accepting individuals with a score higher than  \\(0\\) does not result in the minimum error.*
 {% endfigure %} 
 
 
@@ -214,7 +214,6 @@ exact knowledge of   \\(\mu, \sigma_\text{skill}\\),
 and   \\(\sigma_\text{noise}\\). But how can the government find the
 optimal threshold using observational data? This is where machine
 learning (ML) comes into the picture.
-
 Let's imagine very favorable conditions. Let's assume all people (an
 infinite number of them!) took the exam, the government hired all of
 them and observed their true skills. Further, assume the modeling
@@ -274,8 +273,11 @@ both groups is   \\(\sigma_\text{skill}\\). There can be various
 reasons for disparities between groups, for example historically blue
 people might not have been allowed to attend school.
 
-#### ![](images/image9.png)
-In Ney, people are divided into two groups: blue and red. The blue people have a lower average skill level than the red people. 
+{% figure %}
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2020-12-20-Bluepeoplevs.Neycity/image9.png"/>
+*In Ney, people are divided into two groups: blue and red. The blue people have a lower average skill level than the red people.*
+{% endfigure %} 
+
 
 First of all, let's see what happens if the exam is precise. As
 previously discussed in this case, the optimal threshold to use is 0 for
