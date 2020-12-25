@@ -7,6 +7,7 @@ feature-img: "PATH TO MAIN IMAGE "
 thumbnail: "PATH TO SMALLER IMAGE (like a logo, shown on SAIL Blog home page)"
 author: <a href="link">YOUR NAME</a> 
 tags: []
+draft: True
 ---
 
 Your markdown goes here!
@@ -22,4 +23,5 @@ feature-img: "/assets/img/posts/2020-11-23-learning-from-language/thumb.jpg"
 thumbnail: "/assets/img/posts/2020-11-23-learning-from-language/thumb.jpg"
 author: <a href="https://cs.stanford.edu/~muj/">Jesse Mu</a> and <a href="https://murtyshikhar.github.io/">Shikhar Murty</a>
 tags: [ml, machine learning, grounding, explanation, computer vision, nlp]
+draft: True
 ---
