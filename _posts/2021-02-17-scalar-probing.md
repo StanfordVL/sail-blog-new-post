@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Do Language Models Know How Heavy an Elephant Is?"
-excerpt: "Humans have a pretty good sense of scale, or reasonable ranges of numeric attributes, like weight or price, of different objects, but do pre-trained language representations? We measure the amount of scale information that is captured in several kinds of pre-trained text representations and also come up with a new version of BERT, called NumBERT, with improved numerical reasoning, which captures scale better."
+summary: "Humans have a pretty good sense of scale, like the weight or price of different objects, but do pre-trained language representations? We measure how well pre-trained text representations capture scale and also come up with a improved version of BERT that captures scale better."
 feature-img: "/assets/img/posts/2021-02-17-scalar-probing/image1.png"
 # feature-img: "/assets/img/posts/2021-02-17-scalar-probing/image1.jpg"
 thumbnail: "/assets/img/posts/2021-02-17-scalar-probing/image1.png"
