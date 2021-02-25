@@ -133,6 +133,7 @@ For more details check out our ICLR [paper](https://openreview.net/forum?id=q8qL
 ### Acknowledgments
 
 We would like to thank our collaborator [Javier Sagastuy-Brena](https://www.javiersagastuy.com/) and advisors [Surya Ganguli](https://profiles.stanford.edu/surya-ganguli) and [Daniel Yamins](https://web.stanford.edu/~yamins/).
+We would also like to thank [Megha Srivastava](https://web.stanford.edu/~meghas/) for very helpful feedback on this post.
 
 
 [^saad1995dynamics]: David Saad and Sara Solla.  Dynamics of on-line gradient descent learning for multilayer neural networks.Advances in neural information processing systems, 8:302–308, 1995.
