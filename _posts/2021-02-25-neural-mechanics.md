@@ -19,11 +19,10 @@ In order to make headway on this extremely difficult question, existing works ha
 
 
 {% figure %}
-<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2021-02-25-neural-mechanics/image1.gif"/>
-<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2021-02-25-neural-mechanics/image5.gif"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2021-02-25-neural-mechanics/image1.gif"/>
 {% endfigure %}
 
-**Fig. 1.** *We plot the per-parameter dynamics (left) and per-filter squared Euclidean norm dynamics (right) for the convolutional layers of a VGG-16 model (with batch normalization) trained on Tiny ImageNet with SGD with learning rate $$\eta = 0.1$$, weight decay $$\lambda = 10^{-4}$$, and batch size $$S = 256$$. While the parameter dynamics are noisy and chaotic, the neuron dynamics are smooth and patterned.*
+**Fig. 1.** *We plot the per-parameter dynamics (left) and per-filter squared Euclidean norm dynamics (right) for the convolutional layers of a VGG-16 model (with batch normalization) trained on Tiny ImageNet with SGD with learning rate $$\eta = 0.1$$, weight decay $$\lambda = 10^{-4}$$, and batch size $$S = 256$$. Each color represents a different convolutional block. While the parameter dynamics are noisy and chaotic, the neuron dynamics are smooth and patterned.*
 
 
 ## Symmetries in the loss shape gradient and Hessian geometry
@@ -116,7 +115,7 @@ Notice how these equations are equivalent to the conservation laws when $$\eta =
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2021-02-25-neural-mechanics/image3.gif"/>
 {% endfigure %}
 
-**Fig. 5.** *We plot the column sum of the final linear layer (left) and the difference between squared channel norms of the fifth and fourth convolutional layer (right) of a VGG-16 model without batch normalization. We plot the squared channel norm of the second convolution layer (middle) of a VGG-16 model with batch normalization. Both models are trained on Tiny ImageNet with SGD with learning rate $$\eta = 0.1$$, weight decay $$\lambda$$, batch size $$S = 256$$, for $$100$$ epochs. Colored lines are empirical and black dashed lines are the theoretical predictions.*
+**Fig. 5.** *We plot the column sum of the final linear layer (left) and the difference between squared channel norms of the fifth and fourth convolutional layer (right) of a VGG-16 model without batch normalization. We plot the squared channel norm of the second convolution layer (middle) of a VGG-16 model with batch normalization. Both models are trained on Tiny ImageNet with SGD with learning rate $$\eta = 0.1$$, weight decay $$\lambda=0$$, batch size $$S = 256$$, for $$100$$ epochs. Colored lines are empirical and black dashed lines are the theoretical predictions.*
 
 
 Translation dynamics. For parameters with translation symmetry, this equation implies that the sum of these parameters decays exponentially to zero at a rate proportional to the weight decay. In particular, the dynamics do not directly depend on the learning rate $$\eta$$ nor any information of the dataset due to the lack of curvature in the gradient field for these parameters (as shown in Fig. 2).
