@@ -5,7 +5,7 @@
         <atom:link href="/blog/feed.xml" rel="self" type="application/rss+xml"/>
         <link>http://0.0.0.0:4000/blog/</link>
         <description>The Stanford AI Lab (SAIL) Blog is a place for SAIL students, faculty, and researchers to share our work with the general public.</description>
-        <pubDate>Thu, 25 Feb 2021 09:56:33 -0800</pubDate>
+        <pubDate>Wed, 24 Feb 2021 20:27:03 -0800</pubDate>
         
           
           <item>
@@ -17,10 +17,11 @@
 &lt;p&gt;In order to make headway on this extremely difficult question, existing works have made major simplifying assumptions on the architecture, such as restricting to a single hidden layer &lt;sup id=&quot;fnref:saad1995dynamics&quot;&gt;&lt;a href=&quot;#fn:saad1995dynamics&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, linear activation functions &lt;sup id=&quot;fnref:saxe2013exact&quot;&gt;&lt;a href=&quot;#fn:saxe2013exact&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, or infinite width layers &lt;sup id=&quot;fnref:jacot2018neural&quot;&gt;&lt;a href=&quot;#fn:jacot2018neural&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. These works have also ignored the complexity introduced by the optimizer through stochastic and discrete updates. In the present work, rather than introducing unrealistic assumptions on the architecture or optimizer, we identify combinations of parameters with simpler dynamics (as shown Fig. 1) that can be solved exactly!&lt;/p&gt;
 
 &lt;figure class=&quot;figure&quot;&gt;&lt;div class=&quot;figure__main&quot;&gt;
-&lt;p&gt;&lt;img class=&quot;postimage_75&quot; src=&quot;/blog/assets/img/posts/2021-02-25-neural-mechanics/image1.gif&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class=&quot;postimagehalf&quot; src=&quot;/blog/assets/img/posts/2021-02-25-neural-mechanics/image1.gif&quot; /&gt;
+&lt;img class=&quot;postimagehalf&quot; src=&quot;/blog/assets/img/posts/2021-02-25-neural-mechanics/image5.gif&quot; /&gt;&lt;/p&gt;
 &lt;/div&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;strong&gt;Fig. 1.&lt;/strong&gt; &lt;em&gt;We plot the per-parameter dynamics (left) and per-filter squared Euclidean norm dynamics (right) for the convolutional layers of a VGG-16 model (with batch normalization) trained on Tiny ImageNet with SGD with learning rate &lt;script type=&quot;math/tex&quot;&gt;\eta = 0.1&lt;/script&gt;, weight decay &lt;script type=&quot;math/tex&quot;&gt;\lambda = 10^{-4}&lt;/script&gt;, and batch size &lt;script type=&quot;math/tex&quot;&gt;S = 256&lt;/script&gt;. Each color represents a different convolutional block. While the parameter dynamics are noisy and chaotic, the neuron dynamics are smooth and patterned.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fig. 1.&lt;/strong&gt; &lt;em&gt;We plot the per-parameter dynamics (left) and per-filter squared Euclidean norm dynamics (right) for the convolutional layers of a VGG-16 model (with batch normalization) trained on Tiny ImageNet with SGD with learning rate &lt;script type=&quot;math/tex&quot;&gt;\eta = 0.1&lt;/script&gt;, weight decay &lt;script type=&quot;math/tex&quot;&gt;\lambda = 10^{-4}&lt;/script&gt;, and batch size &lt;script type=&quot;math/tex&quot;&gt;S = 256&lt;/script&gt;. While the parameter dynamics are noisy and chaotic, the neuron dynamics are smooth and patterned.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;symmetries-in-the-loss-shape-gradient-and-hessian-geometry&quot;&gt;Symmetries in the loss shape gradient and Hessian geometry&lt;/h2&gt;
 
@@ -113,7 +114,7 @@
 &lt;p&gt;&lt;img class=&quot;postimage_75&quot; src=&quot;/blog/assets/img/posts/2021-02-25-neural-mechanics/image3.gif&quot; /&gt;&lt;/p&gt;
 &lt;/div&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;strong&gt;Fig. 5.&lt;/strong&gt; &lt;em&gt;We plot the column sum of the final linear layer (left) and the difference between squared channel norms of the fifth and fourth convolutional layer (right) of a VGG-16 model without batch normalization. We plot the squared channel norm of the second convolution layer (middle) of a VGG-16 model with batch normalization. Both models are trained on Tiny ImageNet with SGD with learning rate &lt;script type=&quot;math/tex&quot;&gt;\eta = 0.1&lt;/script&gt;, weight decay &lt;script type=&quot;math/tex&quot;&gt;\lambda=0&lt;/script&gt;, batch size &lt;script type=&quot;math/tex&quot;&gt;S = 256&lt;/script&gt;, for &lt;script type=&quot;math/tex&quot;&gt;100&lt;/script&gt; epochs. Colored lines are empirical and black dashed lines are the theoretical predictions.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fig. 5.&lt;/strong&gt; &lt;em&gt;We plot the column sum of the final linear layer (left) and the difference between squared channel norms of the fifth and fourth convolutional layer (right) of a VGG-16 model without batch normalization. We plot the squared channel norm of the second convolution layer (middle) of a VGG-16 model with batch normalization. Both models are trained on Tiny ImageNet with SGD with learning rate &lt;script type=&quot;math/tex&quot;&gt;\eta = 0.1&lt;/script&gt;, weight decay &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;, batch size &lt;script type=&quot;math/tex&quot;&gt;S = 256&lt;/script&gt;, for &lt;script type=&quot;math/tex&quot;&gt;100&lt;/script&gt; epochs. Colored lines are empirical and black dashed lines are the theoretical predictions.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Translation dynamics. For parameters with translation symmetry, this equation implies that the sum of these parameters decays exponentially to zero at a rate proportional to the weight decay. In particular, the dynamics do not directly depend on the learning rate &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt; nor any information of the dataset due to the lack of curvature in the gradient field for these parameters (as shown in Fig. 2).&lt;/p&gt;
 
