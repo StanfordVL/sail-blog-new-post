@@ -75,7 +75,32 @@ Many other chatbots use a dialog management strategy where on a given turn, the 
 
 Since a module may decide it has finished discussing a topic, we allow another module to append a prompt and take over on the same turn. The first module’s response acknowledges the users’ previous utterance, and the second module’s prompt gives the user direction for the next turn. For example, the user might receive a response “I also like avocados” from the opinions response generator, which is used for casual exchange of personal opinions, and then a prompt “Would you like to know more about the history of avocados?” from the Wikipedia response generator, which is used for sharing factual information. Figure 3 shows an example of the type of conversation our bot has, with different RGs handling their own specialized types of dialog.
 
-The animation above below shows how the response and prompt selection works. The opinion, wikipedia, and neural fallback modules use the state and annotations to generate responses, the bot selects the best response and prompt, and then the bot updates its state based on this choice.
+The animations below show how the response and prompt selection works. The opinion, wikipedia, and neural fallback modules use the state and annotations to generate responses, the bot selects the best response and prompt, and then the bot updates its state based on this choice.
+
+{% figure %}
+<video autoplay loop muted playsinline class="postimage">
+  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_1.mp4" type="video/mp4">
+</video>
+<figcaption style='text-align:center;'>
+<strong>Step 1</strong>: Annotators run on new user message and their annotations are stored in Chirpy's state.
+</figcaption>
+{% endfigure %}
+{% figure %}
+<video autoplay loop muted playsinline class="postimage">
+  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2.mp4" type="video/mp4">
+</video>
+<figcaption style='text-align:center;'>
+<strong>Step 2</strong>: Response generators use annotations to produce responses and the response with the highest priority is selected.
+</figcaption>
+{% endfigure %}
+{% figure %}
+<video autoplay loop muted playsinline class="postimage">
+  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_3.mp4" type="video/mp4">
+</video>
+<figcaption style='text-align:center;'>
+<strong>Step 3</strong>: Since the highest priority response did not include a prompt, response generators are also asked to produce prompts. The highest-priority prompt is chosen and combined with the previously selected response. This message is returned to the user.
+</figcaption>
+{% endfigure %}
 
 ## How can I use Chirpy?
 
