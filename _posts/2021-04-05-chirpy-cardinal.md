@@ -54,7 +54,7 @@ We wanted Chirpy to be able to discuss a broad range of topics in depth. One sou
 {% figure %}
 <img class="postimage_75" style='float:right; display:inline;' src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/figure2.png"/>
 <figcaption>
-<strong>Figure 2</strong>: In the first utterance, we have our bot ask a handwritten question (in italics). The user in response provides a meaningful answer which we can use to find related content from the Wikipedia page on the Trevi Fountain. The neural rephrasing model takes the two prior turns and the snippet as input to produce a response that weaves factual sentences into the conversational narrative. 
+<strong>Figure 2</strong>: In the first utterance, we have our bot ask a handwritten question. The user in response provides a meaningful answer which we can use to find related content from the Wikipedia page on the Trevi Fountain. The neural rephrasing model takes the two prior turns and the snippet as input to produce a response that weaves factual sentences into the conversational narrative. 
 </figcaption>
 {% endfigure %}
 
