@@ -78,7 +78,7 @@ Since a module may decide it has finished discussing a topic, we allow another m
 The animations below show how the response and prompt selection works. The opinion, wikipedia, and personal chat modules use the state and annotations to generate responses, the bot selects the best response and prompt, and then the bot updates its state based on this choice.
 
 {% figure %}
-<video muted controls playsinline class="postimage_75">
+<video muted controls playsinline class="postimage">
   <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_1.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
@@ -87,7 +87,7 @@ The animations below show how the response and prompt selection works. The opini
 {% endfigure %}
 {% figure %}
 <video muted controls playsinline class="postimage">
-  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2_no_borders.mp4" type="video/mp4">
+  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2_no_border.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
 <strong>Step 2</strong>: Response generators use annotations to produce responses and the response with the highest priority is selected.
@@ -95,7 +95,7 @@ The animations below show how the response and prompt selection works. The opini
 {% endfigure %}
 {% figure %}
 <video muted controls playsinline class="postimage">
-  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_3_no_borders.mp4" type="video/mp4">
+  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_3_no_border.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
 <strong>Step 3</strong>: Since the highest priority response did not include a prompt, response generators are also asked to produce prompts. The highest-priority prompt is chosen and combined with the previously selected response. This message is returned to the user.

@@ -23,6 +23,7 @@ article {
     display: flex;
     flex-wrap: wrap;
     justify-content:space-evenly;
+    align-items: flex-start;
 }
 /* Setting a width in pixels ensures that the figure doesn't blow up on large screens
  * while taking up as much space as it can (for readability) on smaller screens*/
@@ -43,4 +44,14 @@ figure figcaption {
 
 dl dd {
     margin-left: 2rem;
+}
+
+video {
+    padding: 0;
+    max-width: 100%;
+}
+@media screen and (min-width: 600px) {
+    video {
+        padding: 0 10%;
+    }
 }
