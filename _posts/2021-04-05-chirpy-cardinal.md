@@ -3,8 +3,8 @@ layout: post
 title: "Inside Chirpy Cardinal: Stanford's open-source social chatbot that won 2nd place in Alexa Prize"
 short-summary: "Last year, Stanford won 2nd place in the Alexa Prize Socialbot Grand Challenge for social chatbots. In this post, we look into building a chatbot that combines the flexibility and naturalness of neural dialog generation with the reliability and practicality of scripted dialogue. We also discuss our open-sourcing efforts with the goal of enabling future research."
 summary: "Last year, Stanford won 2nd place in the Alexa Prize Socialbot Grand Challenge for social chatbots. In this post, we look into building a chatbot that combines the flexibility and naturalness of neural dialog generation with the reliability and practicality of scripted dialogue. We also discuss our open-sourcing efforts with the goal of enabling future research. Our bot, Chirpy, is a modern social chatbot, tested and validated by real users, capable of discussing a broad range of topics. We can’t wait to introduce it to you!"
-feature-img: "PATH TO MAIN IMAGE "
-thumbnail: "PATH TO SMALLER IMAGE (like a logo, shown on SAIL Blog home page)"
+feature-img: "/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2.gif"
+thumbnail: "/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2.gif"
 author: <a href="stanford.edu/~ashwinpp/">Ashwin Paranjape</a> and <a href="https://www.linkedin.com/in/ameliahardy/">Amelia Hardy</a> 
 tags: [nlp, chatbots, neural generation, open source, alexa prize, socialbot]
 draft: True
@@ -78,7 +78,7 @@ Since a module may decide it has finished discussing a topic, we allow another m
 The animations below show how the response and prompt selection works. The opinion, wikipedia, and personal chat modules use the state and annotations to generate responses, the bot selects the best response and prompt, and then the bot updates its state based on this choice.
 
 {% figure %}
-<video autoplay muted loop playsinline class="postimage_75">
+<video muted controls playsinline class="postimage_75">
   <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_1.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
@@ -86,16 +86,16 @@ The animations below show how the response and prompt selection works. The opini
 </figcaption>
 {% endfigure %}
 {% figure %}
-<video autoplay muted controls playsinline class="postimage">
-  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2.mp4" type="video/mp4">
+<video muted controls playsinline class="postimage">
+  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2_no_borders.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
 <strong>Step 2</strong>: Response generators use annotations to produce responses and the response with the highest priority is selected.
 </figcaption>
 {% endfigure %}
 {% figure %}
-<video autoplay muted controls playsinline class="postimage">
-  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_3.mp4" type="video/mp4">
+<video muted controls playsinline class="postimage">
+  <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_3_no_borders.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
 <strong>Step 3</strong>: Since the highest priority response did not include a prompt, response generators are also asked to produce prompts. The highest-priority prompt is chosen and combined with the previously selected response. This message is returned to the user.
