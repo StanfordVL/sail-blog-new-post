@@ -46,7 +46,7 @@ Chirpy’s music response generator uses rule-based, scripted dialog trees, like
 #### Personal Chat Response Generator
 We wanted Chirpy to have the ability to discuss users’ personal experiences and emotions. Since these are highly varied, we used neural generation because of its flexibility when handling previously unseen utterances. As shown in Figure 2, neural generation models input a context and then generate the response word-by-word. We fine-tuned a GPT2-medium model [^transfer-transfo] on the EmpatheticDialogues dataset [^empathetic-dialogues], which consists of conversations between a speaker describing an emotional personal experience and a listener who responds to the speaker. Since the conversations it contains are relatively brief, grounded in specific emotional situations, and focused on empathy, this dataset is well suited to the personal chat RG.
 
-To keep neural conversations focused and effective, we begin each personal chat discussion by asking the user a scripted starter question, e.g., What do you like to do to relax? On each subsequent turn, we pass the conversation history as context to the GPT-2 model, and then sample 20 diverse responses [^nucleus-sampling]. When selecting the final response, we prioritize generations that contain questions. However, if fewer than one third of the responses contain questions, we assume that the model no longer has a clear path forward, select a response without a question, and hand over to another response generator. Not continuing neurally generated conversation segments for too long is a simple but effective strategy for preventing the overall conversation quality from degrading.
+To keep neural conversations focused and effective, we begin each personal chat discussion by asking the user a scripted starter question, e.g., What do you like to do to relax? On each subsequent turn, we pass the conversation history as context to the GPT-2 model, and then sample 20 diverse responses. When selecting the final response, we prioritize generations that contain questions. However, if fewer than one third of the responses contain questions, we assume that the model no longer has a clear path forward, select a response without a question, and hand over to another response generator. Not continuing neurally generated conversation segments for too long is a simple but effective strategy for preventing the overall conversation quality from degrading.
 
 #### Wiki Response Generator 
 We wanted Chirpy to be able to discuss a broad range of topics in depth. One source of information for a broad range of topics is Wikipedia, which provides in-depth content for millions of entities. Chirpy tracks the entity under discussion and if it is able to find a corresponding Wikipedia article, the Wiki RG searches for relevant sentences using TF-IDF, a standard technique used by search engines to find relevant documents based on text overlap with an underlying query. To encourage such overlap, we have our bot ask a handwritten open-ended question that is designed to evoke a meaningful response, eg in Figure 2 “I’m thinking about visiting the Trevi fountain. Do you have any thoughts about what I should do?”
@@ -75,10 +75,10 @@ Many other chatbots use a dialog management strategy where on a given turn, the 
 
 Since a module may decide it has finished discussing a topic, we allow another module to append a prompt and take over on the same turn. The first module’s response acknowledges the users’ previous utterance, and the second module’s prompt gives the user direction for the next turn. For example, the user might receive a response “I also like avocados” from the opinions response generator, which is used for casual exchange of personal opinions, and then a prompt “Would you like to know more about the history of avocados?” from the Wikipedia response generator, which is used for sharing factual information. Figure 3 shows an example of the type of conversation our bot has, with different RGs handling their own specialized types of dialog.
 
-The animations below show how the response and prompt selection works. The opinion, wikipedia, and neural fallback modules use the state and annotations to generate responses, the bot selects the best response and prompt, and then the bot updates its state based on this choice.
+The animations below show how the response and prompt selection works. The opinion, wikipedia, and personal chat modules use the state and annotations to generate responses, the bot selects the best response and prompt, and then the bot updates its state based on this choice.
 
 {% figure %}
-<video autoplay loop muted playsinline class="postimage">
+<video autoplay muted loop playsinline class="postimage_75">
   <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_1.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
@@ -86,7 +86,7 @@ The animations below show how the response and prompt selection works. The opini
 </figcaption>
 {% endfigure %}
 {% figure %}
-<video autoplay loop muted playsinline class="postimage">
+<video autoplay muted controls playsinline class="postimage">
   <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_2.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
@@ -94,7 +94,7 @@ The animations below show how the response and prompt selection works. The opini
 </figcaption>
 {% endfigure %}
 {% figure %}
-<video autoplay loop muted playsinline class="postimage">
+<video autoplay muted controls playsinline class="postimage">
   <source src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/chirpy_animation_3.mp4" type="video/mp4">
 </video>
 <figcaption style='text-align:center;'>
@@ -133,12 +133,11 @@ Thanks to Siddharth Karamcheti, Megha Srivastava and rest of the SAIL Blog Team 
 This research was supported in part by [Stanford Open Virtual Assistant Lab (OVAL)](https://oval.cs.stanford.edu) (for Amelia Hardy) and Alexa Prize Stipend Award (for Haojun Li, Kaushik Ram Sadagopan, Nguyet Minh Phu, Dilara Soylu). 
 
 
-[^BART]: BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension. https://www.aclweb.org/anthology/2020.acl-main.703.pdf
-[^GPT-3]: Language Models are Few-Shot Learners. https://arxiv.org/abs/2005.14165
-[^Meena]: Adiwardana, D., Luong, M. T., So, D. R., Hall, J., Fiedel, N., Thoppilan, R., ... & Le, Q. V. (2020). Towards a human-like open-domain chatbot. arXiv preprint arXiv:2001.09977.
-[^BlenderBot]: Roller, S., Dinan, E., Goyal, N., Ju, D., Williamson, M., Liu, Y., ... & Weston, J. (2020). Recipes for building an open-domain chatbot. arXiv preprint arXiv:2004.13637.
-[^DialoGPT]: Zhang, Y., Sun, S., Galley, M., Chen, Y. C., Brockett, C., Gao, X., ... & Dolan, B. (2019). Dialogpt: Large-scale generative pre-training for conversational response generation. arXiv preprint arXiv:1911.00536.
-[^transfer-transfo]: 
-[^empathetic-dialogues]:
-[^nucleus-sampling]:
-[^topical-chat]:
+[^BART]: Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed, Omer Levy, Veselin Stoyanov, and Luke Zettlemoyer. (2019). Bart: Denoising sequence-to-sequence pre-training for natural language generation, translation, and comprehension. CoRR, abs/1910.13461.
+[^GPT-3]: Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, ... and Dario Amodei. (2020). Language Models are Few-Shot Learners. arXiv:2005.14165
+[^Meena]: Daniel Adiwardana, Minh-Thang Luong, David R. So, Jamie Hall, Noah Fiedel, Romal Thoppilan, ... Quoc V. Le. (2020). Towards a human-like open-domain chatbot. arXiv preprint arXiv:2001.09977.
+[^BlenderBot]: Stephen Roller, Emily Dinan, Naman Goyal, Da Ju, Mary Williamson, Yinhan Liu, ...  Jason Weston. (2020). Recipes for building an open-domain chatbot. arXiv preprint arXiv:2004.13637.
+[^DialoGPT]: Yizhe Zhang, Siqi Sun, Michel Galley, Yen-Chun Chen, Chris Brockett, Xiang Gao, Jianfeng Gao, Jingjing Liu, & Bill Dolan. (2020). DialoGPT: Large-Scale Generative Pre-training for Conversational Response Generation. arXiv preprint arXiv:1911.00536.
+[^transfer-transfo]: Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, and Ilya Sutskever. (2019). Language Models are Unsupervised Multitask Learners. 
+[^empathetic-dialogues]: Hannah Rashkin, Eric Michael Smith, Margaret Li and Y-Lan Boureau. (2019). Towards Empathetic Open-domain Conversation Models: a New Benchmark and Dataset. arXiv preprint arXiv:1811.00207.
+[^topical-chat]: Karthik Gopalakrishnan, Behnam Hedayatnia, Qinlang Chen, Anna Gottardi, Sanjeev Kwatra, Anu Venkatesh, Raefer Gabriel, & Dilek Hakkani-Tür (2019). Topical-Chat: Towards Knowledge-Grounded Open-Domain Conversations. In Proc. Interspeech 2019 (pp. 1891–1895).
