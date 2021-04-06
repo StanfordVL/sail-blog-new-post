@@ -27,7 +27,7 @@ _Recently, there has been enormous progress in building large neural net models 
 _Since neural generation is unreliable, practical conversational agents are dominated by hand-written rules:_  dialogue trees, templated responses, topic ontologies, and so on. Figure 1 shows an example of this type of conversation. The bot gives a series of scripted responses, choosing responses based on fixed criteria --  for example, whether or not a song name is detected. This design has benefits: developers writing these rules can interpret the system’s choices, control the direction of the conversation, and ensure consistency. But these rules are brittle! An unanticipated user utterance that gets misclassified into a wrong branch can lead to absurd responses and lead down a path that is hard to recover from. Additionally, depending on a predetermined set of templated responses limits the range of possibilities and can make the bot sound unnatural.
 
 {% figure %}
-<img class="postimage_75" style='float:right; display:inline;' src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/figure1.png"/>
+<img class="postimage_75" style='float:right; display:inline;' src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/figure1_600p.png"/>
 <figcaption>
 <strong>Figure 1</strong>: Example of a hand-written dialogue tree. Unanticipated or misclassified user responses can lead to absurd responses and paths that are hard to recover from.
 </figcaption>
@@ -52,7 +52,7 @@ To keep neural conversations focused and effective, we begin each personal chat 
 We wanted Chirpy to be able to discuss a broad range of topics in depth. One source of information for a broad range of topics is Wikipedia, which provides in-depth content for millions of entities. Chirpy tracks the entity under discussion and if it is able to find a corresponding Wikipedia article, the Wiki RG searches for relevant sentences using TF-IDF, a standard technique used by search engines to find relevant documents based on text overlap with an underlying query. To encourage such overlap, we have our bot ask a handwritten open-ended question that is designed to evoke a meaningful response, eg in Figure 2 “I’m thinking about visiting the Trevi fountain. Do you have any thoughts about what I should do?”
 
 {% figure %}
-<img class="postimage_75" style='float:right; display:inline;' src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/figure2.png"/>
+<img class="postimage_75" style='float:right; display:inline;' src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/figure2_600p.png"/>
 <figcaption>
 <strong>Figure 2</strong>: In the first utterance, we have our bot ask a handwritten question. The user in response provides a meaningful answer which we can use to find related content from the Wikipedia page on the Trevi Fountain. The neural rephrasing model takes the two prior turns and the snippet as input to produce a response that weaves factual sentences into the conversational narrative. 
 </figcaption>
@@ -67,7 +67,7 @@ There are clear benefits to all three types of dialog – entirely scripted, par
 Many other chatbots use a dialog management strategy where on a given turn, the bot gets a user utterance, decides which module can handle it best, and then returns the next response from this module. Our bot delays that decision until after generation, so that it can make a more informed choice. On each turn, every module within the bot generates a response and a self-assessed priority using module specific context. Once every response generator has produced some output, the bot will then use these priorities to select the highest priority response.
 
 {% figure %}
-<img class="postimage_75" style='float:right; display:inline;' src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/figure3.png"/>
+<img class="postimage_75" style='float:right; display:inline;' src="{{ site.baseurl }}/assets/img/posts/2021-04-05-chirpy-cardinal/figure3_600p.png"/>
 <figcaption>
 <strong>Figure 3</strong>: Example conversation with our bot. In the second utterance, our bot uses a response from Launch RG appended with a prompt from Personal Chat RG. When the topic of conversation shifts to music, Music RG takes over. In the last turn, a lack of interest, the Music RG produces a response to acknowledge and hands over to Categories RG which provides a prompt.  
 </figcaption>
