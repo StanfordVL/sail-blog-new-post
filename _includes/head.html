@@ -7,6 +7,7 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+    {% if page.style %}<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/{{ page.style }}"> {% endif %} 
 
     <!--Favicon-->
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon-32x32.png" sizes="32x32" />
