@@ -141,7 +141,6 @@ For transferring to a new task, we tweak the rule of the game such that the red 
 
 We studied the role of task-specific skills and partner-specific skills (i.e., conventions) in multi-agent collaborative tasks. We explored the use of a modular architecture to train agents that can separate task-specific and partner-specific representations. With the modular setup, we are able to piece together new combinations of modules to adapt more quickly to novel combinations of tasks and partners!
 
-### References
 
 [^Hawkins17]: Robert D Hawkins, Mike Frank, and Noah D Goodman. [Convention-formation in iterated reference games](https://cogsci.mindmodeling.org/2017/papers/0098/paper0098.pdf). In Proceedings of the 39th Annual Meeting of the Cognitive Science Society, 2017.
 
@@ -152,3 +151,7 @@ For more details check out our ICLR 2021 paper “On the Critical Role of Conven
 [Paper](https://arxiv.org/abs/2104.02871)
 
 [Code](https://github.com/Stanford-ILIAD/Conventions-ModularPolicy)
+
+### Acknowledgments
+
+Thanks to Sidd Karamcheti and Jacob Schreiber for their helpful comments on this blogpost!
