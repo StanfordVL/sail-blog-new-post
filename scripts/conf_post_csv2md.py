@@ -25,7 +25,7 @@ _FUZZY_CATEGRORIES = [
     "Point of contact email address",
     "Image To Represent Paper",
     "Award Nominations (if any, comma separated)",
-    "Link to website",
+    "Link to project website",
     "Link to paper",
     "Link to blog post (if any)",
     "Link to public video (e.g. YouTube, if any)",
