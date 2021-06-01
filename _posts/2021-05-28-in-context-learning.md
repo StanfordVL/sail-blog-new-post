@@ -48,7 +48,7 @@ A task that GPT-3 gets perfect accuracy on
 
 What is the easiest task for an autoregressive language model? Well, "copying" the input to the output is a simple operation. In our setting of in-context learning, it's equivalent to the identity function. For a Transformer model built up of self-attention blocks like GPT-3, the identity function should intuitively be easy to learn because making the queries, keys, and values all be the same leads to the identity function. Generative language models notoriously suffer from repetitive outputs which are considered an undesirable failure mode due to being unrealistic and lacking in diversity ([Holtzman et al., 2020](https://arxiv.org/abs/1904.09751)). This natural propensity of language models to repeat text makes copying an appropriate target for studying the limits of how good the accuracy of in-context learning could be.
 
-**The task:** Copy five distinct, comma-separated characters sampled from the first seven lowercase letters of the alphabet. Restricting the number of characters to 5, the possible characters to ‘abcdefgh', and enforcing the characters in each individual example to be distinct keeps the total number of possible test inputs manageable. We use 5 in-context examples.
+**The task:** Copy five distinct, comma-separated characters sampled from the first eight lowercase letters of the alphabet. Restricting the number of characters to 5, the possible characters to ‘abcdefgh', and enforcing the characters in each individual example to be distinct keeps the total number of possible test inputs manageable. We use 5 in-context examples.
 
 **An example prompt:**
 ```py
@@ -288,7 +288,7 @@ Though not studied here, most mysterious of all is the mechanism behind in-conte
 Acknowledgments
 -----------------------------------------------------
 
-Many thanks to Percy Liang for advising this project. Thanks to Nelson Liu and Sidd Karamcheti for helpful comments regarding this blog post. Last but not least, many thanks to OpenAI for their work on GPT-3 and for making these experiments possible through the Academic Access Program.
+Many thanks to Percy Liang for advising this project. Thanks to Nelson Liu and Sidd Karamcheti for helpful comments regarding this blog post, and to Michael Xie for suggesting the permuted labels experiment. Last but not least, many thanks to OpenAI for their work on GPT-3 and for making these experiments possible through the Academic Access Program.
 
 
 References
