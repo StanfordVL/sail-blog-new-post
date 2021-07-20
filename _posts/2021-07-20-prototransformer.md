@@ -410,7 +410,7 @@ questions. Volunteers from the teaching team helped annotate a small
 portion of the student solutions that the AI meta-learning algorithm
 requires.
 
-To showcase feedback to students, we built an application for students
+To showcase feedback to students, we were joined by Alan Chang and together we built an application for students
 to see their solutions and AI feedback (see image above). We were
 transparent in informing students that an AI was providing feedback. For
 each predicted misconception, we associated it with a message (shown in
