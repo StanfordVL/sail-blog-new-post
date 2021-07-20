@@ -509,5 +509,5 @@ for great collaborations. Thank you to Mehran Sahami, Julie Zelenki,
 Brahm Capoor and the Code in Place team who supported this project.
 Thank you to the section leaders who provided all the human feedback
 that the AI was able to learn from. Thank you to the Stanford Institute
-for Human-Centered Artificial Intelligence and the Stanford
+for Human-Centered Artificial Intelligence (in particular the Hoffman-Yee Research Grant) and the Stanford
 Interdisciplinary Graduate Fellowship for their support.
