@@ -71,8 +71,8 @@ volunteer teachers.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image3.png"/>
+Heatmap of the population of students for Code in Place '20.
 {% endfigure %}
-###### Heatmap of the population of students for Code in Place '20.
 
 While crowd-sourcing a teaching team did make a lot of things possible
 for Code in Place that usual online courses lack, there are still limits
@@ -108,8 +108,8 @@ tells us our solution is wrong and to try something different.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image6.png"/>
+Examples of student feedback in three different MOOCS.
 {% endfigure %}
-###### Examples of student feedback in three different MOOCS.
 
 It makes a lot of sense why MOOCs settle for subpar feedback: it's
 really difficult to do otherwise! Even for Stanford CS106A, the teaching
@@ -131,8 +131,8 @@ feedback at scale?
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image5.png"/>
+A coding exercise on Code.org. There are four blocks to choose from to assemble a program.
 {% endfigure %}
-###### A coding exercise on Code.org. There are four blocks to choose from to assemble a program.
 
 ## The feedback challenge.
 
@@ -155,8 +155,8 @@ explanations.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image7.png"/>
+Distribution of student solutions in four settings: block programs (Code.org), free response (Power), CS1 university assignments (Liftoff and Pyramid). The dotted line represents a Zipf distribution.
 {% endfigure %}
-###### Distribution of student solutions in four settings: block programs (Code.org), free response (Power), CS1 university assignments (Liftoff and Pyramid). The dotted line represents a Zipf distribution.
 
 First, **providing feedback to student code is hard work**.  As an
 instructor, every student solution requires me to reason about the
@@ -237,8 +237,8 @@ where student code is much more complex.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image8.png"/>
+The supervised approach requires the instructor to curate a dataset of student solutions with feedback where as the generative grading approach requires the instructor to build an algorithm to generate annotated data. In contrast, the meta-learning approach requires the instructor to annotate feedback for K examples across N programming problems. K is typically very small (~10) and N not much larger (~100).
 {% endfigure %}
-###### The supervised approach requires the instructor to curate a dataset of student solutions with feedback where as the generative grading approach requires the instructor to build an algorithm to generate annotated data. In contrast, the meta-learning approach requires the instructor to annotate feedback for K examples across N programming problems. K is typically very small (~10) and N not much larger (~100).
 
 The supervised approach requires the instructor to curate a dataset of
 student solutions with feedback where as the generative grading approach
@@ -261,8 +261,8 @@ AI system to "learn how to learn" to give feedback.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image2.png"/>
+An example rubric used to provide feedback for a string insertion task.
 {% endfigure %}
-###### An example rubric used to provide feedback for a string insertion task.
 
 Meta-learning is an old idea from the 1990s [9, 10] that has seen a
 resurgence in the last five years. Recall that in supervised learning a
@@ -293,8 +293,8 @@ example would comprise of four tasks.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image9.png"/>
+Examples of predictions made by the AI system.
 {% endfigure %}
-###### Examples of predictions made by the AI system.
 
 One of the key ideas of this approach is to frame
 the **feedback challenge as a few-shot classification problem**. Remember
@@ -315,8 +315,8 @@ across problems.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image1.png"/>
+Comparison of the average precision of the meta-learner to human instructors and a supervised baseline.
 {% endfigure %}
-###### Comparison of the average precision of the meta-learner to human instructors and a supervised baseline.
 
 We will leave the details of the meta-learner to the technical report.
 In short, we propose a new deep neural network called a **ProtoTransformer
@@ -378,8 +378,8 @@ June, Code in Place '21 was gearing up for its diagnostic assessment.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image4.png"/>
+Meta-learned feedback deployed to Code in Place '21.
 {% endfigure %}
-###### Meta-learned feedback deployed to Code in Place '21.
 
 In an amazing turnout, Code in Place '21 had 12,000 students. But
 grading 12,000 students each solving 5 problems would be beyond
@@ -422,8 +422,8 @@ rating when given AI feedback versus instructor feedback.
 
 {% figure %}
 <img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image11.png"/>
+Results from deploying AI feedback to Code in Place 2021. (left) Comparison of student-rated correctness of human feedback versus AI feedback. (right) Comparison of ai feedback quality across different genders and countries of origin.
 {% endfigure %}
-###### Results from deploying AI feedback to Code in Place 2021. (left) Comparison of student-rated correctness of human feedback versus AI feedback. (right) Comparison of ai feedback quality across different genders and countries of origin.
 
 Here's what we found:
 
