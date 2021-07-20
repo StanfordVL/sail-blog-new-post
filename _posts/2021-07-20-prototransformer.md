@@ -4,7 +4,7 @@ title: "Meta-Learning Student Feedback to 16,000 Solutions"
 short-summary: "A meta-learning system for automatic feedback to student code education with applications to university level courses and a large scale online learning platform."
 summary: "A meta-learning system for automatic feedback to student code education with applications to university level courses and a large scale online learning platform."
 feature-img: "/assets/img/posts/2021-07-20-prototransformer/main.png"
-thumbnail: "/assets/img/posts/2021-07-20-prototransformer/thumb.png"
+thumbnail: "/assets/img/posts/2021-07-20-prototransformer/main.png"
 author: <a href="https://www.mikehwu.com/">Mike Wu</a>, <a href="https://stanford.edu/~cpiech/bio/index.html">Chris Piech</a>, and <a href="https://ai.stanford.edu/~cbfinn/">Chelsea Finn</a>
 tags: [code education, automatic feedback, prototype network, transformer, code in place]
 ---
@@ -23,7 +23,9 @@ online coding course, this could take months of labor. Today, large
 online courses either don't offer feedback at all or take shortcuts that
 sacrifice the quality of the feedback given.
 
-![](images/image4.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image4.png"/>
+{% endfigure %}
 
 Several computational approaches have been proposed to automatically
 produce personalized feedback, but each falls short: they either require
@@ -47,7 +49,9 @@ to 96.7% agreement to feedback provided by human instructors. This is,
 to the best of our knowledge, the first successful deployment of machine
 learning based feedback to open-ended student work.
 
-![](images/image10.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image10.png"/>
+{% endfigure %}
 
 In the middle of the pandemic, while everyone is forced to social
 distance in the confines of their own homes, thousands of people across
@@ -65,7 +69,9 @@ the pandemic still in full force in many areas of the world, Code in
 Place kicked off again, growing to over 12,000 students and 1,120
 volunteer teachers.
 
-![](images/image3.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image3.png"/>
+{% endfigure %}
 ###### Heatmap of the population of students for Code in Place '20.
 
 While crowd-sourcing a teaching team did make a lot of things possible
@@ -100,7 +106,9 @@ tooltip: upon making a mistake, a pre-specified message is shown.
 Pre-specified messages tend to be very vague: here, the tooltip just
 tells us our solution is wrong and to try something different.
 
-![](images/image6.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image6.png"/>
+{% endfigure %}
 ###### Examples of student feedback in three different MOOCS.
 
 It makes a lot of sense why MOOCs settle for subpar feedback: it's
@@ -121,7 +129,9 @@ moving online, which might only grow given the lasting effects of the
 pandemic. This shift surfaces a very important challenge: can we provide
 feedback at scale?
 
-![](images/image5.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image5.png"/>
+{% endfigure %}
 ###### A coding exercise on Code.org. There are four blocks to choose from to assemble a program.
 
 ## The feedback challenge.
@@ -143,7 +153,9 @@ We might ask: why did this happen? What is it about feedback that makes
 it so difficult to scale? In our research, we came up with two parallel
 explanations.
 
-![](images/image7.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image7.png"/>
+{% endfigure %}
 ###### Distribution of student solutions in four settings: block programs (Code.org), free response (Power), CS1 university assignments (Liftoff and Pyramid). The dotted line represents a Zipf distribution.
 
 First, **providing feedback to student code is hard work**.  As an
@@ -223,7 +235,9 @@ While tractable for block-based programs, it became exceedingly
 difficult to build a good algorithm for university level assignments
 where student code is much more complex.
 
-![](images/image8.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image8.png"/>
+{% endfigure %}
 ###### The supervised approach requires the instructor to curate a dataset of student solutions with feedback where as the generative grading approach requires the instructor to build an algorithm to generate annotated data. In contrast, the meta-learning approach requires the instructor to annotate feedback for K examples across N programming problems. K is typically very small (~10) and N not much larger (~100).
 
 The supervised approach requires the instructor to curate a dataset of
@@ -245,7 +259,9 @@ instructors to play a role, the AI system should bear the onus of
 quickly adapting to every new exercise. To accomplish this, we built an
 AI system to "learn how to learn" to give feedback.
 
-![](images/image2.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image2.png"/>
+{% endfigure %}
 ###### An example rubric used to provide feedback for a string insertion task.
 
 Meta-learning is an old idea from the 1990s [9, 10] that has seen a
@@ -275,7 +291,9 @@ inserting at the wrong location or inserting the wrong string. So, we
 can treat every misconception as its own task. The string insertion
 example would comprise of four tasks.
 
-![](images/image9.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image9.png"/>
+{% endfigure %}
 ###### Examples of predictions made by the AI system.
 
 One of the key ideas of this approach is to frame
@@ -295,7 +313,9 @@ of different problems. Meta-learning focuses its efforts on capturing
 “breadth”, accumulating more generalizable knowledge that can be shared
 across problems.
 
-![](images/image1.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image1.png"/>
+{% endfigure %}
 ###### Comparison of the average precision of the meta-learner to human instructors and a supervised baseline.
 
 We will leave the details of the meta-learner to the technical report.
@@ -356,7 +376,9 @@ deployment can be large, and it remained to be shown that our approach
 can give high quality feedback at scale in **a live application**. Come
 June, Code in Place '21 was gearing up for its diagnostic assessment.
 
-![](images/image4.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image4.png"/>
+{% endfigure %}
 ###### Meta-learned feedback deployed to Code in Place '21.
 
 In an amazing turnout, Code in Place '21 had 12,000 students. But
@@ -398,7 +420,9 @@ the student solutions were given feedback by humans but students did not
 know which ones. So, we can compare students' holistic and per-question
 rating when given AI feedback versus instructor feedback.
 
-![](images/image11.png)
+{% figure %}
+<img class="postimage_unpadded" src="{{ site.baseurl }}/assets/img/posts/2021-07-20-prototransformer/image11.png"/>
+{% endfigure %}
 ###### Results from deploying AI feedback to Code in Place 2021. (left) Comparison of student-rated correctness of human feedback versus AI feedback. (right) Comparison of ai feedback quality across different genders and countries of origin.
 
 Here's what we found:
