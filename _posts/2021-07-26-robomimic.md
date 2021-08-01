@@ -11,7 +11,7 @@ tags: [imitation learning, reinforcement learning, rl, ml, robotics]
 
 ## Overview
 
-Imitating human demonstrations is a promising approach to endow robots with various manipulation capabilities, but a lack of open-source human datasets and reproducible learning methods make assessing the state of the field difficult. In this paper, we conduct an extensive study of six offline learning algorithms for robot manipulation on five simulated and three real-world multi-stage manipulation tasks of varying complexity, and with datasets of varying quality. Our study analyzes the most critical challenges when learning from offline human data for manipulation. 
+Imitating human demonstrations is a promising approach to endow robots with various manipulation capabilities, but the lack of open-source human datasets and reproducible learning methods make assessing the state of the field difficult. In this paper, we conduct an extensive study of six offline learning algorithms for robot manipulation on five simulated and three real-world multi-stage manipulation tasks of varying complexity, and with datasets of varying quality. Our study analyzes the most critical challenges when learning from offline human data for manipulation. 
 
 Based on the study, we derive a series of lessons including the sensitivity to different algorithmic design choices, the dependence on the quality of the demonstrations, and the variability based on the stopping criteria due to the different objectives in training and evaluation. We also highlight opportunities for learning from human datasets, such as the ability to learn proficient policies on challenging, multi-stage tasks beyond the scope of current reinforcement learning methods, and the ability to easily scale to natural, real-world manipulation scenarios where only raw sensory signals are available. 
 
@@ -133,6 +133,7 @@ We collect datasets across 6 operators of varying proficiency and evaluate offli
 
 ### Task Reset Distributions
 
+We show the task reset distributions for each task, which governs the initial placement of all objects in the scene at the start of each episode. Initial states are sampled from this distribution at both train and evaluation time.
 
 {% figure %}
 <figure class="postfigurequarter">
@@ -192,7 +193,7 @@ We collect datasets across 6 operators of varying proficiency and evaluate offli
 </figure>
 
 <figcaption>
-We show the task reset distributions for each task. Initial states are sampled from this distribution at both train and evaluation time.
+We show the task reset distributions for each task, which governs the initial placement of all objects in the scene at the start of each episode. Initial states are sampled from this distribution at both train and evaluation time.
 </figcaption>
 
 {% endfigure %}
