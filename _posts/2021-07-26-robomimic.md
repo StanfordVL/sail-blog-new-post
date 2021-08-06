@@ -11,7 +11,7 @@ tags: [imitation learning, reinforcement learning, rl, ml, robotics]
 
 ## Overview
 
-Imitating human demonstrations is a promising approach to endow robots with various manipulation capabilities, but the lack of open-source human datasets and reproducible learning methods make assessing the state of the field difficult. In this paper, we conduct an extensive study of six offline learning algorithms for robot manipulation on five simulated and three real-world multi-stage manipulation tasks of varying complexity, and with datasets of varying quality. Our study analyzes the most critical challenges when learning from offline human data for manipulation. 
+Imitating human demonstrations is a promising approach to endow robots with various manipulation capabilities. Datasets collected by enabling humans to control and guide robot arms through motions needed to solve difficult manipulation tasks can allow robots to learn to perform such tasks autonomously. However, the lack of open-source human datasets and reproducible learning methods make assessing the state of the field difficult. In this paper, we conduct an extensive study of six offline learning algorithms for robot manipulation on five simulated and three real-world multi-stage manipulation tasks of varying complexity, and with datasets of varying quality. Our study analyzes the most critical challenges when learning from offline human data for manipulation. 
 
 Based on the study, we derive a series of lessons including the sensitivity to different algorithmic design choices, the dependence on the quality of the demonstrations, and the variability based on the stopping criteria due to the different objectives in training and evaluation. We also highlight opportunities for learning from human datasets, such as the ability to learn proficient policies on challenging, multi-stage tasks beyond the scope of current reinforcement learning methods, and the ability to easily scale to natural, real-world manipulation scenarios where only raw sensory signals are available. 
 
@@ -46,7 +46,7 @@ We explore five challenges in learning from human-labeled datasets.
 
 ## Study Design
 
-In this section, we summarize the tasks (5 simulation and 3 real), datasets (3 different variants), algorithms (6 offline methods, including 3 imitation and 3 batch reinforcement), and observations spaces (2 main variants) that we explored in our study.
+In this section, we summarize the tasks (5 simulation and 3 real), datasets (3 different variants), algorithms (6 offline methods, including 3 imitation and 3 batch reinforcement), and observation spaces (2 main variants) that we explored in our study.
 
 ### Tasks
 
@@ -487,10 +487,10 @@ We evaluated 6 different offline learning algorithms in this study, including 3 
 
 - **BC**: standard Behavioral Cloning, which is direct regression from observations to actions.
 - **BC-RNN**: Behavioral Cloning with a policy network that's a Recurrent Neural Network (RNN), which allows modeling temporal correlations in decision-making.
-- **HBC**: Hierarchical Behavioral Cloning, where a high-level subgoal planner is trained to predict future observations, and a low-level recurrent policy is conditioned on a future observation (subgoal) to predict action sequences (see [this paper](https://arxiv.org/abs/2003.06085) and [this paper](https://arxiv.org/abs/2012.06738) for more details).
-- **BCQ**: Batch-Constrained Q-Learning, a batch reinforcement learning method proposed in [this paper](https://arxiv.org/abs/1812.02900).
-- **CQL**: Conservative Q-Learning, a batch reinforcement learning method proposed in [this paper](https://arxiv.org/abs/2006.04779).
-- **IRIS**: Implicit Reinforcement without Interaction, a batch reinforcement learning method proposed in [this paper](https://arxiv.org/abs/1911.05321).
+- **HBC**: Hierarchical Behavioral Cloning, where a high-level subgoal planner is trained to predict future observations, and a low-level recurrent policy is conditioned on a future observation (subgoal) to predict action sequences (see [Mandlekar\*, Xu\* et al. (2020)](https://arxiv.org/abs/2003.06085) and [Tung\*, Wong\* et al. (2021)](https://arxiv.org/abs/2012.06738) for more details).
+- **BCQ**: Batch-Constrained Q-Learning, a batch reinforcement learning method proposed in [Fujimoto et al. (2019)](https://arxiv.org/abs/1812.02900).
+- **CQL**: Conservative Q-Learning, a batch reinforcement learning method proposed in [Kumar et al. (2020)](https://arxiv.org/abs/2006.04779).
+- **IRIS**: Implicit Reinforcement without Interaction, a batch reinforcement learning method proposed in [Mandlekar et al. (2020)](https://arxiv.org/abs/1911.05321).
 
 
 ### Observation Spaces
@@ -545,7 +545,7 @@ We provide examples of the image observations used in each task below.
 
 In this section, we briefly highlight the lessons we learned from our study. See the paper for more thorough results and discussion.
 
-### Lesson 1: History-Dependent Models are extremely effective.
+### Lesson 1: History-dependent models are extremely effective.
 
 {% figure %}
 <img src="{{ site.baseurl }}/assets/img/posts/2021-08-06-robomimic/lesson_1.png" class="postimagefourfifth"/>
@@ -554,7 +554,7 @@ Methods that make decisions based on history, such as BC-RNN and HBC, outperform
 </figcaption>
 {% endfigure %}
 
-### Lesson 2: Batch Offline RL struggles with suboptimal human data.
+### Lesson 2: Batch (Offline) RL struggles with suboptimal human data.
 
 {% figure %}
 <img src="{{ site.baseurl }}/assets/img/posts/2021-08-06-robomimic/lesson_2.png" class="postimagefourfifth"/>
@@ -572,7 +572,7 @@ To further evaluate methods in a simpler setting, we collected the Can Paired da
 </figcaption>
 {% endfigure %}
 
-### Lesson 3: Improving Offline Policy Selection is important.
+### Lesson 3: Improving offline policy selection is important.
 
 {% figure %}
 <img src="{{ site.baseurl }}/assets/img/posts/2021-08-06-robomimic/lesson_3.png" class="postimagefourfifth"/>
@@ -581,7 +581,7 @@ The mismatch between train and evaluation objective causes problems for policy s
 </figcaption>
 {% endfigure %}
 
-### Lesson 4: Observation Space and Hyperparameters play a large role in policy performance.
+### Lesson 4: Observation space and hyperparameters play a large role in policy performance.
 
 {% figure %}
 <img src="{{ site.baseurl }}/assets/img/posts/2021-08-06-robomimic/lesson_4.png" class="postimagefourfifth"/>
@@ -590,7 +590,7 @@ We found that observation space choice and hyperparameter selection is crucial f
 </figcaption>
 {% endfigure %}
 
-### Lesson 5: Using Human Data for manipulation is promising.
+### Lesson 5: Using human data for manipulation is promising.
 
 {% figure %}
 <img src="{{ site.baseurl }}/assets/img/posts/2021-08-06-robomimic/lesson_5.png" class="postimagefourfifth"/>
@@ -599,7 +599,7 @@ Studying how dataset size impacts performance made us realize that using human d
 </figcaption>
 {% endfigure %}
 
-### Lesson 6: Study Results transfer to Real World.
+### Lesson 6: Study results transfer to real world.
 
 We collected 200 demonstrations per task, and trained a BC-RNN policy <b>using identical hyperparameters to simulation, with no hyperparameter tuning</b>. We see that in most cases, performance and insights on what works in simulation transfer well to the real world.
 
