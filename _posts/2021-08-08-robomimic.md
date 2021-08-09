@@ -730,6 +730,8 @@ Without wrist observations (left) the success rate decreases from 73.3% to 43.3%
 
 <hr>
 
+Please see the [robomimic website](https://arise-initiative.github.io/robomimic-web/) for more information. 
+
 This blog post is based on the following paper:
 
 - ["Learning to Generalize Across Long-Horizon Tasks from Human Demonstrations"](https://arxiv.org/abs/2003.06085) by Ajay Mandlekar\*, Danfei Xu\*, Roberto Martin-Martin, Silvio Savarese, and Li Fei-Fei.
