@@ -734,5 +734,5 @@ Please see the [robomimic website](https://arise-initiative.github.io/robomimic-
 
 This blog post is based on the following paper:
 
-- ["Learning to Generalize Across Long-Horizon Tasks from Human Demonstrations"](https://arxiv.org/abs/2003.06085) by Ajay Mandlekar\*, Danfei Xu\*, Roberto Martin-Martin, Silvio Savarese, and Li Fei-Fei.
+- ["What Matters in Learning from Offline Human Demonstrations for Robot Manipulation"](https://arxiv.org/abs/2108.03298) by Ajay Mandlekar, Danfei Xu, Josiah Wong, Soroush Nasiriany, Chen Wang, Rohun Kulkarni, Li Fei-Fei, Silvio Savarese, Yuke Zhu, and Roberto Martín-Martín.
 
