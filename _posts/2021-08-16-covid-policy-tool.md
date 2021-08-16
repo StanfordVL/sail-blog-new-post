@@ -32,7 +32,7 @@ Our tool enables policymakers to comprehensively analyze pandemic tradeoffs, by 
 
 ## Our approach
 
-At the heart of our tool is our [state-of-the-art epidemiological model](https://www.nature.com/articles/s41586-020-2923-3) which utilizes large-scale mobility networks to accurately capture the spread of COVID-19 in cities across the US.
+At the heart of our tool is our [state-of-the-art epidemiological model](https://covid-mobility.stanford.edu/) which utilizes large-scale mobility networks to accurately capture the spread of COVID-19 in cities across the US.
 
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2021-08-16-covid-policy-tool/network.jpg"/>
