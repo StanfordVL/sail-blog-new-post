@@ -71,7 +71,7 @@ correctly and with provenance, by up to **42** percentage points against existin
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2021-10-01-retrieval-based-NLP/image1.png"/>
 <figcaption>
-Figure 1: An illustration comparing (a) black-box language models and (b) retrieval-oriented NLP models, the paradigm this post advocates for.
+**Figure 1:** An illustration comparing (a) black-box language models and (b) retrieval-oriented NLP models, the paradigm this post advocates for.
 </figcaption>
 {% endfigure %}
 
@@ -128,7 +128,7 @@ techniques for locating relevant information at inference time.
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2021-10-01-retrieval-based-NLP/image2.png"/>
 <figcaption>
-Figure 2: Schematic diagrams comparing two popular paradigms in neural IR in sub-figures (a) and (b) against the late interaction paradigm of ColBERT in sub-figure (c).
+**Figure 2:** Schematic diagrams comparing two popular paradigms in neural IR in sub-figures (a) and (b) against the late interaction paradigm of ColBERT in sub-figure (c).
 </figcaption>
 {% endfigure %}
 
@@ -187,10 +187,9 @@ MaxSims to score the document. “MaxSim” is a careful choice that allows
 us to index the document embeddings for [Approximate Nearest Neighbor](https://arxiv.org/abs/1702.08734)]
 (ANN) search, enabling us to scale this rich interaction to millions of passages with latency
 on the order of tens of milliseconds. For instance, ColBERT can search over all
-passages in English Wikipedia in just 70 milliseconds.
-On MS MARCO Passage Ranking, ColBERT preserved the
-MRR@10 quality of BERT re-rankers while boosting recall@1k to nearly 97%
-against the official BM25 ranking's recall@1k of just 81%.
+passages in English Wikipedia in approximately 70 milliseconds per query.
+On MS MARCO Passage Ranking, ColBERT preserved the MRR@10 quality of BERT re-rankers while boosting recall@1k to nearly **97%**
+against the official BM25 ranking's recall@1k of just **81%**.
 
 Making neural retrievers more lightweight remains an active area of
 development, with models like **[DeepImpact](https://arxiv.org/abs/2104.12016)**
@@ -244,7 +243,7 @@ example: its reader is a generative BART model, which attends to the
 passages while generating the target outputs. While they constitute
 important steps toward retrieval-based NLP, REALM and RAG suffer from
 two major limitations. First, they use the restrictive paradigm of
-Figure 2(b) for retrieval, thereby sacrificing recall: they are often
+**Figure 2(b)** for retrieval, thereby sacrificing recall: they are often
 unable to find relevant passages for conducting their tasks. Second,
 when training the retriever, REALM and RAG collect documents by
 searching for them inside the training loop, restricting the model’s
@@ -263,7 +262,7 @@ reader—specifically, passages ranked highly by the latest version of the
 retriever and that also overlap with the gold answer of the question—and
 challenging “negative” passages. By converging to a high coverage of
 positive passages and by effectively sampling hard negatives, ColBERT-QA
-improves retrieval Success@20 by more than 5-, 5-, and 12-point gains on
+improves retrieval Success@20 by more than **5**-, **5**-, and **12**-point gains on
 Open-NaturalQuestions, Open-TriviaQA, and Open-SQuAD, and thus greatly
 improves downstream answer match.
 
@@ -288,12 +287,12 @@ to “focus” on distinct parts of the same query, as each of those documents
 in the corpus might satisfy a distinct aspect of the same complex query.
 As a result of its more deliberate architecture and its stronger
 retrieval modeling, Baleen saturates retrieval on the popular two-hop
-HotPotQA benchmark (raising answer-recall@20 from 89% by MDR to 96%) and
+HotPotQA benchmark (raising answer-recall@20 from **89%** by MDR to **96%**) and
 dramatically improves performance on the harder four-hop claim
 verification
 benchmark [HoVer](https://hover-nlp.github.io/),
-finding all required passages in 92% of the examples—up from just 45%
-for the official baseline and 75% for a many-hop flavor of ColBERT.
+finding all required passages in **92%** of the examples—up from just **45%**
+for the official baseline and **75%** for a many-hop flavor of ColBERT.
 
 In these tasks, when our retrieval-based models make predictions, we can
 inspect their underlying sources and decide whether we can trust the
