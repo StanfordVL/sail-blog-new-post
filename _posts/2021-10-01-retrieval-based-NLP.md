@@ -71,7 +71,7 @@ correctly and with provenance, by up to **42** percentage points against existin
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2021-10-01-retrieval-based-NLP/image1.png"/>
 <figcaption>
-**Figure 1:** An illustration comparing (a) black-box language models and (b) retrieval-oriented NLP models, the paradigm this post advocates for.
+Figure 1: An illustration comparing (a) black-box language models and (b) retrieval-oriented NLP models, the paradigm this post advocates for.
 </figcaption>
 {% endfigure %}
 
@@ -128,7 +128,7 @@ techniques for locating relevant information at inference time.
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2021-10-01-retrieval-based-NLP/image2.png"/>
 <figcaption>
-**Figure 2:** Schematic diagrams comparing two popular paradigms in neural IR in sub-figures (a) and (b) against the late interaction paradigm of ColBERT in sub-figure (c).
+Figure 2: Schematic diagrams comparing two popular paradigms in neural IR in sub-figures (a) and (b) against the late interaction paradigm of ColBERT in sub-figure (c).
 </figcaption>
 {% endfigure %}
 
@@ -184,7 +184,7 @@ attempts to softly and contextually locate each query token inside the
 document: for each query embedding, it finds the most similar embedding
 in the document with a “MaxSim” operator and then sums up all of the
 MaxSims to score the document. “MaxSim” is a careful choice that allows
-us to index the document embeddings for [Approximate Nearest Neighbor](https://arxiv.org/abs/1702.08734)]
+us to index the document embeddings for [Approximate Nearest Neighbor](https://arxiv.org/abs/1702.08734)
 (ANN) search, enabling us to scale this rich interaction to millions of passages with latency
 on the order of tens of milliseconds. For instance, ColBERT can search over all
 passages in English Wikipedia in approximately 70 milliseconds per query.
@@ -402,3 +402,6 @@ using a condensed retrieval architecture.
 We continue to actively maintain
 **[our code](https://github.com/stanford-futuredata/ColBERT)** as open source.
 
+
+
+**Acknowledgments.** We would like to thank Megha Srivastava and Drew Arad Hudson for helpful comments and feedback on this blog post.
