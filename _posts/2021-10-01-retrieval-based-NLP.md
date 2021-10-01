@@ -404,4 +404,4 @@ We continue to actively maintain
 
 
 
-**Acknowledgments.** We would like to thank Megha Srivastava and Drew Arad Hudson for helpful comments and feedback on this blog post.
+**Acknowledgments.** We would like to thank Megha Srivastava and Drew A. Hudson for helpful comments and feedback on this blog post.
