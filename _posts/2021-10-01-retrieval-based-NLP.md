@@ -347,7 +347,7 @@ corpus, while always supporting its predictions with provenance from the
 corpus.
 
 An exciting benchmark connected to this space
-is [BEIR](https://arxiv.org/abs/2104.08663),
+is **[BEIR](https://arxiv.org/abs/2104.08663)**,
 which evaluates retrievers on their capacity for search “out-of-the-box”
 on unseen IR tasks, like _Argument Retrieval_, and in new domains, like
 the _COVID-19 research literature_. While retrieval offers a concrete
