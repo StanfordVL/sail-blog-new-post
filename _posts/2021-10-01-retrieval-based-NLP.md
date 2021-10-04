@@ -83,7 +83,7 @@ Wikipedia, the medical literature, or a software’s API documentation. When
 solving a language task, the model **learns to search** for pertinent passages
 and to then **use the retrieved information** for crafting knowledgeable responses.
 In doing so, retrieval helps decouple the capacity that language models have for
-_understanding text_ from how they _store knowledge_.
+_understanding text_ from how they _store knowledge_, leading to three key advantages.
 
 <!-- ### Benefits of retrieval-based NLP models -->
 
@@ -140,7 +140,7 @@ the query. In
 2019, [search](https://arxiv.org/abs/1901.04085) [was](https://arxiv.org/abs/1910.10687) [revolutionized](https://arxiv.org/abs/1904.07094) with **[BERT](https://arxiv.org/abs/1810.04805)** for
 ranking and its deployment
 in [Google](https://blog.google/products/search/search-language-understanding-bert/) and [Bing](https://azure.microsoft.com/en-us/blog/bing-delivers-its-largest-improvementin-search-experience-using-azure-gpus/) for
-search. The standard approach is illustrated in **Figure 2(a)**. Each
+Web search. The standard approach is illustrated in **Figure 2(a)**. Each
 document is concatenated with the query, and both are fed jointly into a BERT
 model, fine-tuned to estimate relevance. BERT _doubled_ the MRR@10 quality
 metric over BM25 on the popular MS MARCO Passage Ranking leaderboard,
@@ -175,8 +175,8 @@ queries and documents. Can we efficiently scale fine-grained, contextual
 interactions to a massive corpus, without compromising speed or quality?
 It turns out that the answer is “yes”, using a paradigm called late
 interaction, first devised in
-our **[ColBERT](https://arxiv.org/abs/2004.12832)** [[code](https://github.com/stanford-futuredata/ColBERT)]
-model.
+our **[ColBERT](https://arxiv.org/abs/2004.12832)**[^colbert] [[code](https://github.com/stanford-futuredata/ColBERT)]
+model, which appeared at SIGIR 2020.
 
 As depicted in **Figure 2(c)**, **ColBERT** independently encodes queries and
 documents into fine-grained **multi-vector representations**. It then
@@ -216,22 +216,18 @@ often by reference to the passages in a large corpus, as depicted in
 **Figure 1(b)**.
 
 
-| Benchmark                                    | System                  | Metric                                             | Gains                                                           | Baselines                                     |
-|----------------------------------------------|-------------------------|----------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------|
-| **Open-Domain Question Answering**               |                         |                                                    |                                                                 |                                               |
-| Open-NaturalQuestions                        | ColBERT-QA              | Answer Match                                       | **+3**                                                              | RAG, DPR, REALM, BM25+BERT                    |
-| Open-TriviaQA                                | ColBERT-QA              | Answer Match                                       | **+12**                                                             | RAG, DPR, REALM, BM25+BERT                    |
-| Open-SQuAD                                   | ColBERT-QA              | Answer Match                                       | **+17**                                                             | RAG, DPR, REALM, BM25+BERT                    |
-| **Multi-Hop Reasoning**                          |                         |                                                    |                                                                 |                                               |
-| HotPotQA                                     | Baleen                  | Retrieval Success@20                               | **+10** / NA                                                        | MDR / IRRR                                    |
-|                                              |                         | Passage-Pair Match                                 | **+5** / **+3**                                                         | MDR / IRRR                                    |
-| HoVer                                        | Baleen                  | Retrieval Success@100                              | **+48** / **+17**                                                       | TF-IDF / ColBERT-Hop                          |
-|                                              |                         | “HoVer Score” (Claim Verification with Provenance) | **+42**                                                             | Official “TF-IDF + BERT” Baseline             |
-|                                              |                         |                                                    |                                                                 |                                               |
-| **Cross-Lingual Open-Domain Question Answering** |                         |                                                    |                                                                 |                                               |
-| XOR TyDi                                     | GAAMA from IBM Research | Recall@5000-tokens                                 | **+10**                                                             | Official “DPR + Vanilla Transformer” Baseline |
-| **Zero-Shot Information Retrieval**              |                         |                                                    |                                                                 |                                               |
-| BEIR                                         | ColBERT                 | Recall@100                                         | Outperforms other off-the-shelf dense retrievers on **13**/**17** tasks | DPR, ANCE, SBERT, USE-QA                      |
+
+
+{% figure %}
+
+<table style="border-collapse:collapse;border-color:#ccc;border-spacing:0;" class="tg"><colgroup><col style=""><col style=""><col style=""><col style=""><col style=""></colgroup><thead><tr><th style="background-color:#f0f0f0;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">Benchmark</th><th style="background-color:#f0f0f0;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">System</th><th style="background-color:#f0f0f0;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">Metric</th><th style="background-color:#f0f0f0;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">Gains</th><th style="background-color:#f0f0f0;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">Baselines</th></tr></thead><tbody><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal" colspan="5">Open-Domain Question Answering</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">Open-NaturalQuestions</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal" rowspan="3">ColBERT-QA</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal" rowspan="3">Answer Match</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+3</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal" rowspan="3">RAG, DPR, REALM, BM25+BERT</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">Open-TriviaQA</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+12</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">Open-SQuAD</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+17</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal" colspan="5">Multi-Hop Reasoning</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal" rowspan="2">HotPotQA</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal" rowspan="4">Baleen</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">Retrieval Success@20</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+10 / NA</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal" rowspan="2">MDR / IRRR</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">Passage-Pair Match</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+5 / +3</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal" rowspan="2">HoVer</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">Retrieval Success@100</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+48 / +17</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">TF-IDF / ColBERT-Hop</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">“HoVer Score” for<br>Claim Verification<br>with Provenance</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+42</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">Official “TF-IDF + BERT” Baseline</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal" colspan="5" rowspan="2">Cross-Lingual Open-Domain Question Answering    </td></tr><tr></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">XOR TyDi</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">GAAMA with ColBERT<br>from IBM Research</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">Recall@5000-tokens</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">+10</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">Official “DPR + Vanilla Transformer” Baseline</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal" colspan="5">Zero-Shot Information Retrieval</td></tr><tr><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">BEIR</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">ColBERT</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">Recall@100</td><td style="background-color:#f9f9f9;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">Outperforms other off-the-shelf<br>dense retrievers on 13/17 tasks</td><td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal">DPR, ANCE, SBERT, USE-QA</td></tr></tbody></table>
+
+<figcaption>
+Table 1: Results of models using ColBERT, ColBERT-QA, and Baleen across a wide range of language tasks.
+</figcaption>
+
+
+{% endfigure %}
 
 
 
@@ -246,15 +242,15 @@ two major limitations. First, they use the restrictive paradigm of
 **Figure 2(b)** for retrieval, thereby sacrificing recall: they are often
 unable to find relevant passages for conducting their tasks. Second,
 when training the retriever, REALM and RAG collect documents by
-searching for them inside the training loop, restricting the model’s
-adaptation to the task due to freezing the document index when fine-tuning.
+searching for them inside the training loop and, to make this practical, they
+freeze the document encoder when fine-tuning, restricting the model’s adaptation to the task.
 
-**ColBERT-QA** is an Open-QA system that builds on top of ColBERT to tackle
-both problems. By adapting ColBERT's expressive search to the task,
-ColBERT-QA finds useful passages for a larger fraction of the questions
-and thus enables the reader component to answer more questions
-correctly and with provenance. In addition, ColBERT-QA introduces **relevance-guided
-supervision** (RGS), a training strategy whose goal is to adapt a
+**[ColBERT-QA](https://arxiv.org/abs/2007.00814)**[^colbert-qa] is an Open-QA system (published at TACL'21) that we built on
+top of ColBERT to tackle both problems. By adapting ColBERT's expressive search to the task,
+ColBERT-QA finds useful passages for a larger fraction of the questions and thus
+enables the reader component to answer more questions correctly and with provenance.
+In addition, ColBERT-QA introduces **relevance-guided supervision** (RGS),
+a training strategy whose goal is to adapt a
 retriever like ColBERT to the specifics of an NLP task like Open-QA. RGS
 proceeds in discrete rounds, using the retriever trained in the previous
 round to collect “positive” passages that are likely useful for the
@@ -263,7 +259,7 @@ retriever and that also overlap with the gold answer of the question—and
 challenging “negative” passages. By converging to a high coverage of
 positive passages and by effectively sampling hard negatives, ColBERT-QA
 improves retrieval Success@20 by more than **5**-, **5**-, and **12**-point gains on
-Open-NaturalQuestions, Open-TriviaQA, and Open-SQuAD, and thus greatly
+the open-domain QA settings of NaturalQuestions, TriviaQA, and SQuAD, and thus greatly
 improves downstream answer match.
 
 A more sophisticated version of the Open-QA task is **multi-hop reasoning**,
@@ -276,11 +272,12 @@ additional searches—to find all pertinent sources. While these models
 have demonstrated strong performance for two-hop tasks, scaling robustly
 to more hops is challenging as the search space grows exponentially.
 
-To tackle this, our **Baleen** system introduces a richer pipeline for
+To tackle this, our **[Baleen](https://arxiv.org/abs/2101.00436)**[^baleen] system
+(accepted as a Spotlight paper at NeurIPS'21) introduces a richer pipeline for
 multi-hop retrieval: after each retrieval “hop”, Baleen summarizes the
 pertinent information from the passages into a short context that is used
 to inform future hops. In doing so, Baleen controls the search space
-architecturally—as it no longer needs to explore each potential passage
+architecturally—obviating the need to explore each potential passage
 at every hop—without sacrificing recall. Baleen also extends ColBERT’s
 late interaction: it allows the representations of different documents
 to “focus” on distinct parts of the same query, as each of those documents
@@ -297,10 +294,8 @@ for the official baseline and **75%** for a many-hop flavor of ColBERT.
 In these tasks, when our retrieval-based models make predictions, we can
 inspect their underlying sources and decide whether we can trust the
 answer. And when model errors stem from specific sources, those can be
-removed or edited, and our initial experience suggests that this often
-suffices to update the predictions of a model like ColBERT-QA in
-practice.
-
+removed or edited, and making sure models are faithful to such edits
+is an [active area](https://arxiv.org/abs/2109.05052) of work.
 
 
 ### Generalizing models to new domains with robust neural retrieval
@@ -380,9 +375,9 @@ retrievers for targeting a new corpus.
 ### Summary: Is retrieval “all you need”?
 
 The black-box nature of large language models like T5 and GPT-3 makes
-them **inefficient** to train and deploy, **opaque** in backing
-their claims with provenance, and **static** in facing a constantly evolving world. This
-post explores **retrieval-based NLP**, where models retrieve information
+them **inefficient** to train and deploy, **opaque** in their knowledge representations and in backing
+their claims with provenance, and **static** in facing a constantly evolving world and diverse downstream contexts.
+This post explores **retrieval-based NLP**, where models retrieve information
 pertinent to solving their tasks from a plugged-in text corpus. This
 paradigm allows NLP models to leverage the representational strengths
 of language models, while needing **much smaller architectures**, offering
@@ -404,4 +399,12 @@ We continue to actively maintain
 
 
 
-**Acknowledgments.** We would like to thank Megha Srivastava and Drew A. Hudson for helpful comments and feedback on this blog post.
+**Acknowledgments.** We would like to thank Megha Srivastava and Drew A. Hudson for helpful comments and feedback on this blog post. We also thank Ashwin Paranjape, Xiang Lisa Li, and Sidd Karamcheti for valuable and insightful discussions.
+
+
+
+[^colbert]: Omar Khattab and Matei Zaharia. "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT." Proceedings of the 43rd International ACM SIGIR conference on research and development in Information Retrieval. 2020.
+
+[^colbert-qa]: Omar Khattab, Christopher Potts, Matei Zaharia; "Relevance-guided Supervision for OpenQA with ColBERT." Transactions of the Association for Computational Linguistics 2021; 9 929–944. doi: https://doi.org/10.1162/tacl_a_00405
+
+[^baleen]: Omar Khattab, Christopher Potts, and Matei Zaharia. "Baleen: Robust Multi-Hop Reasoning at Scale via Condensed Retrieval." (To appear at NeurIPS 2021.) arXiv preprint arXiv:2101.00436 (2021).
