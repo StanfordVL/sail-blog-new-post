@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Building Scalable, Explainable, and Adaptive NLP Models with Retrieval"
-short-summary: "By accessing knowledge stored explicitly in text corpora, retrieval helps tackle the inefficiency, opaqueness, and static nature of large language models."
-summary: "By accessing knowledge stored explicitly in text corpora, retrieval helps tackle the inefficiency, opaqueness, and static nature of large language models."
+short-summary: "By tapping into knowledge stored explicitly in text corpora, retrieval helps tackle the inefficiency, opaqueness, and static nature of large language models."
+summary: "By tapping into knowledge stored explicitly in text corpora, retrieval helps tackle the inefficiency, opaqueness, and static nature of large language models."
 feature-img: "/assets/img/posts/2021-10-01-retrieval-based-NLP/image1.png"
 thumbnail: "/assets/img/posts/2021-10-01-retrieval-based-NLP/late-interaction.png"
 author: <a href="https://omarkhattab.com/">Omar Khattab</a>, <a href="http://web.stanford.edu/~cgpotts/">Christopher Potts</a>, and <a href="https://cs.stanford.edu/~matei/">Matei Zaharia</a>
@@ -160,7 +160,7 @@ and more
 recently **[DPR](https://arxiv.org/abs/2004.04906)** and **[ANCE](https://arxiv.org/abs/2007.00808)**,
 every document in the corpus is fed into a BERT encoder that produces a
 dense vector meant to capture the semantics of the document. At search
-time, the query is encoded, separately, through another BERT encoder and the
+time, the query is encoded, separately, through another BERT encoder, and the
 top-k related documents are found using a dot product between the query
 and document vectors. By removing the expensive interactions between the
 query and the document, these models are able to scale far more
@@ -187,7 +187,7 @@ MaxSims to score the document. “MaxSim” is a careful choice that allows
 us to index the document embeddings for [Approximate Nearest Neighbor](https://arxiv.org/abs/1702.08734)
 (ANN) search, enabling us to scale this rich interaction to millions of passages with latency
 on the order of tens of milliseconds. For instance, ColBERT can search over all
-passages in English Wikipedia in approximately 70 milliseconds per query.
+passages in English Wikipedia in approximately **70 milliseconds** per query.
 On MS MARCO Passage Ranking, ColBERT preserved the MRR@10 quality of BERT re-rankers while boosting recall@1k to nearly **97%**
 against the official BM25 ranking's recall@1k of just **81%**.
 
