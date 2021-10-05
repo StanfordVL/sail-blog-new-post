@@ -6,7 +6,7 @@ summary: "By tapping into knowledge stored explicitly in text corpora, retrieval
 feature-img: "/assets/img/posts/2021-10-01-retrieval-based-NLP/image1.png"
 thumbnail: "/assets/img/posts/2021-10-01-retrieval-based-NLP/late-interaction.png"
 author: <a href="https://omarkhattab.com/">Omar Khattab</a>, <a href="http://web.stanford.edu/~cgpotts/">Christopher Potts</a>, and <a href="https://cs.stanford.edu/~matei/">Matei Zaharia</a>
-tags: [nlp, ir, natural language processing, information retrieval, colbert, colbert-qa, baleen]
+tags: [nlp, ir, natural language processing, information retrieval, open-domain question answering, multi-hop reasoning, colbert, colbert-qa, baleen]
 draft: True
 ---
 
