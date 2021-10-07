@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "type-on-strap"
-  spec.version       = "0.6.2"
+  spec.version       = "0.6.3"
   spec.authors       = ["Sylhare","Rohan Chandra"]
   spec.email         = ["sylhare@outlook.com", "hellorohan@outlook.com"]
 
@@ -15,12 +15,13 @@ Gem::Specification.new do |spec|
     f.match(%r{^(assets/(js|css|fonts|data)|_(includes|layouts|sass)/|(LICENSE|README.md))}i)
   end
 
-  spec.required_ruby_version = '~> 2.1'
-
-  spec.add_runtime_dependency "jekyll", "3.8.5"
+  spec.add_runtime_dependency "jekyll", "3.9.0"
   spec.add_runtime_dependency "jekyll-seo-tag", "~> 2.3"
   spec.add_runtime_dependency "jekyll-paginate-v2"
   spec.add_runtime_dependency "jekyll-redirect-from"
+
+  spec.add_runtime_dependency "github-pages", "~> 212"
+  spec.add_runtime_dependency "webrick"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 10.0"
