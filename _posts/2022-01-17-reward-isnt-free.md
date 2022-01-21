@@ -10,8 +10,7 @@ tags: [robotics, reinforcement learning, video understanding, natural language p
 draft: True
 ---
 
-
-## Overview
+*This work was conducted as part of [SAIL](https://ai.stanford.edu/) and the [CRFM](https://crfm.stanford.edu/).*
 
 Deep learning has enabled improvements in the capabilities of robots on a range of problems such as grasping [^qtopt] and locomotion [^rma] in recent years. However, building the quintessential home robot that can perform a range of interactive tasks, from cooking to cleaning, in novel environments has remained elusive. While a number of hardware and software challenges remain, a necessary component is robots that can generalize their prior knowledge to new environments, tasks, and objects in a zero or few shot manner. For example, a home robot tasked with setting the dining table cannot afford lengthy re-training for every new dish, piece of cutlery, or dining room it may need to interact with.
 
@@ -116,13 +115,16 @@ Despite the massive domain shift between the human videos and robot domain, our 
 In order to move towards broad generalization in robotics, we need to be able to learn from scalable sources of supervision and diverse data. While most current robot learning methods depend on costly sources of supervision, such as expert demonstrations or manually engineered reward functions, this can be a limiting factor in scaling to the amount of data we need to achieve broad generalization.
 
 
-I've discussed two works that use supervision that is easily acquired through the web, specifically (1) crowd-sourced natural language descriptions of robot behavior, and (2) "in-the-wild" human video datasets. Our results suggest these approaches can be an effective way of supervising reward learning and boosting generalization to unseen environments and tasks at low cost. To learn more about these projects check out the [LOReL](https://www.google.com/url?q=https://sites.google.com/view/robotlorel&sa=D&source=editors&ust=1642408114280703&usg=AOvVaw1mhbywm4xx6LS6LysNmdUB) and [DVD](https://www.google.com/url?q=https://sites.google.com/view/dvd-human-videos&sa=D&source=editors&ust=1642408114280947&usg=AOvVaw2JZvyg83HUo5IeBHow3H9B) project pages.
+I've discussed two works that use supervision that is easily acquired through the web, specifically (1) crowd-sourced natural language descriptions of robot behavior, and (2) "in-the-wild" human video datasets. Our results suggest these approaches can be an effective way of supervising reward learning and boosting generalization to unseen environments and tasks at low cost. To learn more about these projects check out the [LOReL](https://www.google.com/url?q=https://sites.google.com/view/robotlorel&sa=D&source=editors&ust=1642408114280703&usg=AOvVaw1mhbywm4xx6LS6LysNmdUB) and [DVD](https://www.google.com/url?q=https://sites.google.com/view/dvd-human-videos&sa=D&source=editors&ust=1642408114280947&usg=AOvVaw2JZvyg83HUo5IeBHow3H9B) project pages which include videos and links to the code.
 
 This blog post is based on the following papers:
 
 - "Learning Language-Conditioned Robot Behavior from Offline Data and Crowd-Sourced Annotation" Suraj Nair, Eric Mitchell, Kevin Chen, Brian Ichter, Silvio Savarese, Chelsea Finn. CoRL 2021.
 
  - "Learning Generalizable Robotic Reward Functions from "In-The-Wild" Human Videos" Annie S. Chen, Suraj Nair, Chelsea Finn. RSS 2021.
+
+*Finally, I would like to thank Ashwin Balakrishna, Annie Chen, as well as the SAIL editors Jacob Schreiber and Sidd Karamcheti and CRFM editor Shibani Santurkar for their helpful feedback on this post.*
+
 
 
 [^qtopt]: Kalashnikov, D., Irpan, A., Pastor, P., Ibarz, J., Herzog, A., Jang, E., Quillen, D., Holly, E., Kalakrishnan, M., Vanhoucke, V., Levine, S.  (2018). QT-Opt: Scalable Deep Reinforcement Learning for Vision-Based Robotic Manipulation. Conference on Robot Learning.
