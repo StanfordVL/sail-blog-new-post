@@ -3,8 +3,8 @@ layout: post
 title: "How to improve user experience (and behavior): Three papers from Stanford's Alexa Prize team"
 short-summary: "Strategies for understanding user dissatisfaction, handling offensiveness, and increasing user initiative, to improve conversational experience."
 summary: "Strategies for understanding user dissatisfaction, handling offensiveness, and increasing user initiative, to improve conversational experience."
-feature-img: "/assets/img/posts/2022-01-24-alexa-sigdial/images/chirpy_logo_optimized.svg"
-thumbnail: "/assets/img/posts/2022-01-24-alexa-sigdial/images/chirpy_logo_optimized.svg"
+feature-img: "/assets/img/posts/2022-02-01-alexa-sigdial/images/chirpy_logo_optimized.svg"
+thumbnail: "/assets/img/posts/2022-02-01-alexa-sigdial/images/chirpy_logo_optimized.svg"
 author: <a href="https://www.linkedin.com/in/ameliahardy">Amelia Hardy</a>, <a href="https://www.linkedin.com/in/haojun-li">Haojun Li</a>, and <a href="https://cs.stanford.edu/people/abisee/">Abigail See</a>
 tags: [ml, machine learning, nlp]
 draft: True
@@ -35,7 +35,7 @@ However, real-life settings like the Alexa Prize are not so tidy. Users have wid
 Chirpy Cardinal uses a GPT2-medium model fine-tuned on the EmpatheticDialogues[^empatheticdialogues] dataset to hold short discussions with users about their everyday experiences and emotions. Particularly during the pandemic, we found it was important for Chirpy to ask users about these issues. Though larger and more powerful pretrained generative models are available, we used GPT2-medium due to budget and latency constraints.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image8.png"/>
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image8.png"/>
 {% endfigure %}
 
 While the GPT2-medium model is capable of chatting about these simple topics for a few utterances, discussions that extend longer tend to derail. Sooner or later, the bot gives a response that doesn\'t quite make sense, and it\'s hard for the user or the model to recover the conversation.
@@ -51,7 +51,7 @@ We also tracked 9 ways that users express dissatisfaction, such as asking for cl
 Having better understood how and why users express dissatisfaction, we asked: can we learn to predict dissatisfaction, and thus prevent it before it happens?
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image1.png"/>
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image1.png"/>
 {% endfigure %}
 
 With the user conversations collected during the competition, we trained a model to predict the probability that a certain bot utterance would lead the user to express dissatisfaction. Given the noisy correlation between bot errors and user dissatisfaction, this is inherently challenging. Despite this noise, our predictor model was able to find signal in the users' dissatisfaction.
@@ -84,14 +84,14 @@ To measure the effectiveness of a response strategy, we propose 3 metrics:
 We believe that these metrics measure the effectiveness of a response strategy more directly than user ratings as done in Cohn et al.[^cohn19] which measure the overall quality of the conversation.
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image9.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image9.png"/>
 {% endfigure %}
 
 The figure above shows the differences of strategies on the Re-offense ratio. As we can see, strategies with (*redirects*) performed significantly better than strategies without redirects, reducing re-offense rate by as much as 53%. Our pairwise hypothesis tests further shows that using user's name with a redirect further reduces re-offense rate by about 6%, and that asking the user why they made an offensive remark had a 3% **increase** in re-offense rate which shows that asking the user why only invites user re-offenses instead of self-reflection. Empathetic responses also reduced re-offense rate by 3%, while counter responses did not have any significant effect.
 
 {% figure %}
-<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image7.png"/>
-<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image3.png"/>
+<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image7.png"/>
+<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image3.png"/>
 {% endfigure %}
 
 The figure on the left shows the differences in average number of turns until the next re-offense (*Next*), and the figure on the right shows the differences in average number of turns until the end of the conversation (*End*). We again see that strategies with (*redirects* are able to significantly prolong a non-offensive conversation. This further shows that redirection is incredibly effective method to curb user offenses.
@@ -119,7 +119,7 @@ Based on this research, we formed three hypotheses for how to increase user init
 The images below show the types of utterances we experimented with as well as representative user utterances. Per Alexa Prize competition rules, these are not actual user utterances received by our bot.
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image6.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image6.png"/>
 {% endfigure %}
 
 #### 1. Giving statements instead of questions
@@ -127,7 +127,7 @@ The images below show the types of utterances we experimented with as well as re
 In human dialogue research [^whittakerwalker90], the person asking a question has initiative, since they are giving a direction that the person answering follows. By contrast, an open-ended statement gives the listener an opportunity to take initiative. This was the basis of our first strategy: **using statements instead of questions**.
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image2.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image2.png"/>
 {% endfigure %}
 
 #### 2. Sharing personal information
@@ -135,8 +135,8 @@ In human dialogue research [^whittakerwalker90], the person asking a question ha
 Work on both human-human [^collinsmiller94] and human-bot [^lee20] dialogue has found that personal self disclosure has a reciprocal effect. If one participant shares about themself, then the other person is more likely to do the same. We hypothesized that **if Chirpy gave personal statements rather than general ones, then users would take initiative and reciprocate**.
 
 {% figure %}
-<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image4.png"/> 
-<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-01-24-alexa-sigdial/images/image5.png"/>
+<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image4.png"/> 
+<img class="postimagehalf" src="{{ site.baseurl }}/assets/img/posts/2022-02-01-alexa-sigdial/images/image5.png"/>
 {% endfigure %}
 
 The figure on the left is an example of a conversation with back-channeling, the right, without. In this case, back-channeling allows the user to direct the conversation towards what they want (getting suggestions) rather than forcing them to talk about something they're not interested in (hobbies).
