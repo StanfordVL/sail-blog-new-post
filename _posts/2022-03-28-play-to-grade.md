@@ -3,8 +3,8 @@ layout: post
 title: "Grading Complex Interactive Coding Programs with Reinforcement Learning"
 short-summary: "Using reinforcement learning agent to simultaneously learn to play and grade student's homework."
 summary: "Using reinforcement learning agent to simultaneously learn to play and grade student's homework."
-feature-img: "/assets/img/posts/2022-03-25-play-to-grade/snapshot.png"
-thumbnail: "/assets/img/posts/2022-03-25-play-to-grade/snapshot.png"
+feature-img: "/assets/img/posts/2022-03-28-play-to-grade/snapshot.png"
+thumbnail: "/assets/img/posts/2022-03-28-play-to-grade/snapshot.png"
 author: <a href="https://anie.me">Allen Nie</a>, <a href="https://cs.stanford.edu/people/ebrun/">Emma Brunskill</a>, and <a href="https://stanford.edu/~cpiech/bio/index.html">Chris Piech</a>
 tags: [reinforcement learning, few-shot learning, MDP, code education, automatic feedback]
 draft: True
@@ -32,7 +32,7 @@ A challenge faced by these platforms is that of grading assignments. It is well 
 Programming a game that is playable is exciting for students who are learning to code. [Code.org](https://code.org) provides many game development assignments in their curriculum. In these assignments, students write JavaScript programs in a code editor embedded in the web browser. Game assignments are great for teachers to examine student’s progress as well: students not only need to grasp basic concepts like if-conditionals and for-loops but use these concepts to write the physical rules of the game world — calculate the trajectories of objects, resolve inelastic collision of two objects, and keep track of game states. To deal with all of these complexities, students need to use abstraction (functions/class) to encapsulate each functionality in order to manage this complex set of logic.
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure2.png" style="padding:0;"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure2.png" style="padding:0;"/>
 <figcaption>
 <b>Figure 2</b>: In Code.org, students program in an interactive code interface, where they can write the program in the coding area, hit run and play their game.
 </figcaption>
@@ -53,7 +53,7 @@ In order to solve this challenge, we present an algorithm with two components: a
 An ideal agent needs to produce **differential trajectories**, i.e., sequences of actions that can be used to differentiate two MDPs, and must contain at least one bug-triggering state if the trajectory is produced from the incorrect MDP. Therefore, we need both a correct MDP and a few incorrect MDPs to teach the agent and the classifier. These incorrect MDPs are incorrect solutions that can either be provided by the teacher, or come from manually grading a few student programs to find common issues. Although having to manually label incorrect MDPs is an annoyance, we show that the total amount of effort is generally significantly lower than grading each assignment: in fact, we show that for the task we solve in the paper, you only need 5 incorrect MDPs to reach a decent performance (see the appendix section of our paper).
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure3_new.png" style="padding:0;"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure3_new.png" style="padding:0;"/>
 <figcaption>
 Figure 3: We build an MDP wrapper around the student program that allows the agent to interact with the program (while the original program might only allow human control, i.e., we override mouse / keyboard events.
 </figcaption>
@@ -78,7 +78,7 @@ Here are three incorrect programs and what they look like when played. Each inco
 A challenge with building differential trajectories is that one must know which state is a bug triggering state. Previous works [^3][^4][^5] have made the strong assumption that one would automatically know when they encountered a bug, potentially because they expect the game program to crash after encountering a bug. Because of this assumption, they focus their efforts on building pure-exploration agents that try to visit as many states as possible. However, in reality, bugs can be difficult to identify and do not all cause the game to crash. For example, a ball that is supposed to bounce off of a wall is now piercing through it and flying off into oblivion. These types of behavioral anomalies motivate the use of a predictive model that can take in the current game state and determine whether it is anomalous or not.
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure4.png" style="padding:0;"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure4.png" style="padding:0;"/>
 <figcaption>
 <b>Figure 4</b>: The chicken-and-egg cold-start problem. The agent doesn't know how to reach bug state, and the classifier does not know what is a bug.
 </figcaption>
@@ -100,9 +100,9 @@ In this setting, there is only one type of bug. Most classifiers do well when th
 
 {% figure %}
 <a id="figure5"></a>
-<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure5_env.png" style="padding:0; width:25%"/>
-<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure5_single_direction_agent.png" style="padding:0; width:35%"/>
-<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure5_random_agent.png" style="padding:0;width:35%"/>
+<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure5_env.png" style="padding:0; width:25%"/>
+<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure5_single_direction_agent.png" style="padding:0; width:35%"/>
+<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure5_random_agent.png" style="padding:0;width:35%"/>
 <figcaption>
 <b>Figure 5</b>: Performance of different bug classification models with different RL agents.
 </figcaption>
@@ -112,8 +112,8 @@ We can increase the difficulty of this setting to see if collaborative training 
 
 {% figure %}
 <a id="figure6"></a>
-<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure6_env.png" style="padding:0; width:25%"/>
-<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure6_training_improvement_with_CI.png" style="padding:0; width:70%"/>
+<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure6_env.png" style="padding:0; width:25%"/>
+<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure6_training_improvement_with_CI.png" style="padding:0; width:70%"/>
 <figcaption>
 <b>Figure 6</b>: Collaborative training improves bug classifier performance across different models. This shows how important it is for the RL agent to produce <b>differential trajectories</b>, which will allow classifiers to obtain higher performance.
 </figcaption>
@@ -123,7 +123,7 @@ We can also visualize how the collaborative training quickly allows the agent to
 
 {% figure %}
 <a id="figure7"></a>
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure7.png" style="padding:0;"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure7.png" style="padding:0;"/>
 <figcaption>
 <b>Figure 7</b>: Visualization of the paths taken by the RL agent (each line represents one trajectory). After collaborative training (CT), the agent quickly focuses only on visiting potentially bug states (relying on the signal provided by the bug classifiers).
 </figcaption>
@@ -135,7 +135,7 @@ Next, we returned to the motivating example for this type of approach: grading r
 
 {% figure %}
 <a id="figure8"></a>
-<img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure8_table.png" style="padding:0;"/>
+<img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure8_table.png" style="padding:0;"/>
 <figcaption>
 <b>Figure 8</b>: Each program has a binary label (correct or broken) associated with it. We only have 11 programs as our training data.
 </figcaption>
@@ -145,7 +145,7 @@ We train our agent and classifier on 10 broken programs that we wrote without lo
 
 {% figure %}
 <a id="figure9"></a>
-<img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure9_table.png" style="padding:0;"/>
+<img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure9_table.png" style="padding:0;"/>
 <figcaption>
 <b>Figure 9</b>: We show superior performance compared to training a simple code-as-text classifier. <b>For complex, interactive programs, Play to Grade is the most data efficient solution.</b>
 </figcaption>
@@ -161,7 +161,7 @@ One promising direction for future work is to expand beyond pass/fail binary fee
 
 {% figure %}
 <a id="figure10"></a>
-<img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-25-play-to-grade/figure10_multi.png" style="padding:0;"/>
+<img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure10_multi.png" style="padding:0;"/>
 <figcaption>
 <b>Figure 10</b>: Each program has a binary label (correct or broken) associated with it. We only have 11 programs as our training data.
 </figcaption>
