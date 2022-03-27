@@ -48,6 +48,13 @@ Our solution to these problems is to ignore the code text entirely and to grade 
 
 Since all student programs are written for the same assignment, these programs should generate MDP with a lot of commonalities, such as shared state and action space. After playing the game and fully constructing the MDP for an assignment, all we need is to compare the MDP specified by the student's program (student MDP) to the teacher's solution (reference MDP) and determine **if these two MDPs are the same**. What sets this challenge apart from any other reinforcement learning problems is the fact that a **classification** needs to be made at the end of this agent's interaction with this MDP — the decision of whether the MDP is the same as the reference MDP or not.
 
+{% figure %}
+<img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/distance.png" style="padding:0;"/>
+<figcaption>
+<b>Figure 3</b>: We need to build an approximate distance function D that determines the distance between the student program's underlying MDP (black dot) and correct MDPs (blue dots) and incorrect MDPs (red dots). Read more about how we build this distance function in our <a href="https://arxiv.org/abs/2110.14615">paper</a>.
+</figcaption>
+{% endfigure %}
+
 In order to solve this challenge, we present an algorithm with two components: an agent that plays the game and can reliably reach bug states, and a classifier that can recognize bug states (i.e., provide the probability of the observed state being a bug). Both components are necessary for accurate grading: an agent that reaches all states but cannot determine if any represents bugs is just as bad as a perfect classifier paired with an agent that is bad at taking actions which might cause bugs. Imagine a non-optimal agent that never catches the ball (in the example above) – this agent will never be able to test if the wall, or paddle, or goal does not behave correctly. 
 
 An ideal agent needs to produce **differential trajectories**, i.e., sequences of actions that can be used to differentiate two MDPs, and must contain at least one bug-triggering state if the trajectory is produced from the incorrect MDP. Therefore, we need both a correct MDP and a few incorrect MDPs to teach the agent and the classifier. These incorrect MDPs are incorrect solutions that can either be provided by the teacher, or come from manually grading a few student programs to find common issues. Although having to manually label incorrect MDPs is an annoyance, we show that the total amount of effort is generally significantly lower than grading each assignment: in fact, we show that for the task we solve in the paper, you only need 5 incorrect MDPs to reach a decent performance (see the appendix section of our paper).
@@ -55,7 +62,7 @@ An ideal agent needs to produce **differential trajectories**, i.e., sequences o
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure3_new.png" style="padding:0;"/>
 <figcaption>
-Figure 3: We build an MDP wrapper around the student program that allows the agent to interact with the program (while the original program might only allow human control, i.e., we override mouse / keyboard events.
+<b>Figure 4</b>: We build an MDP wrapper around the student program that allows the agent to interact with the program (while the original program might only allow human control, i.e., we override mouse / keyboard events.
 </figcaption>
 {% endfigure %}
 
@@ -71,7 +78,7 @@ Here are three incorrect programs and what they look like when played. Each inco
 <img class="postfigurethird" src="https://media.giphy.com/media/JuQn32VatSaW1vFCgi/giphy.gif"/>
 <img class="postfigurethird" src="https://media.giphy.com/media/gQKLJuq49sjjkEube9/giphy.gif"/>
 <figcaption>
-<b>Figure 3</b>: Different types of incorrect student programs.
+<b>Figure 5</b>: Different types of incorrect student programs.
 </figcaption>
 {% endfigure %}
 
@@ -80,7 +87,7 @@ A challenge with building differential trajectories is that one must know which 
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure4.png" style="padding:0;"/>
 <figcaption>
-<b>Figure 4</b>: The chicken-and-egg cold-start problem. The agent doesn't know how to reach bug state, and the classifier does not know what is a bug.
+<b>Figure 6</b>: The chicken-and-egg cold-start problem. The agent doesn't know how to reach bug state, and the classifier does not know what is a bug.
 </figcaption>
 {% endfigure %}
 
@@ -104,7 +111,7 @@ In this setting, there is only one type of bug. Most classifiers do well when th
 <img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure5_single_direction_agent.png" style="padding:0; width:35%"/>
 <img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure5_random_agent.png" style="padding:0;width:35%"/>
 <figcaption>
-<b>Figure 5</b>: Performance of different bug classification models with different RL agents.
+<b>Figure 7</b>: Performance of different bug classification models with different RL agents.
 </figcaption>
 {% endfigure %}
 
@@ -115,7 +122,7 @@ We can increase the difficulty of this setting to see if collaborative training 
 <img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure6_env.png" style="padding:0; width:25%"/>
 <img class="postfigurethird" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure6_training_improvement_with_CI.png" style="padding:0; width:70%"/>
 <figcaption>
-<b>Figure 6</b>: Collaborative training improves bug classifier performance across different models. This shows how important it is for the RL agent to produce <b>differential trajectories</b>, which will allow classifiers to obtain higher performance.
+<b>Figure 8</b>: Collaborative training improves bug classifier performance across different models. This shows how important it is for the RL agent to produce <b>differential trajectories</b>, which will allow classifiers to obtain higher performance.
 </figcaption>
 {% endfigure %}
 
@@ -125,7 +132,7 @@ We can also visualize how the collaborative training quickly allows the agent to
 <a id="figure7"></a>
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure7.png" style="padding:0;"/>
 <figcaption>
-<b>Figure 7</b>: Visualization of the paths taken by the RL agent (each line represents one trajectory). After collaborative training (CT), the agent quickly focuses only on visiting potentially bug states (relying on the signal provided by the bug classifiers).
+<b>Figure 9</b>: Visualization of the paths taken by the RL agent (each line represents one trajectory). After collaborative training (CT), the agent quickly focuses only on visiting potentially bug states (relying on the signal provided by the bug classifiers).
 </figcaption>
 {% endfigure %}
 
@@ -137,7 +144,7 @@ Next, we returned to the motivating example for this type of approach: grading r
 <a id="figure8"></a>
 <img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure8_table.png" style="padding:0;"/>
 <figcaption>
-<b>Figure 8</b>: Each program has a binary label (correct or broken) associated with it. We only have 11 programs as our training data.
+<b>Figure 10</b>: Each program has a binary label (correct or broken) associated with it. We only have 11 programs as our training data.
 </figcaption>
 {% endfigure %}
 
@@ -147,7 +154,7 @@ We train our agent and classifier on 10 broken programs that we wrote without lo
 <a id="figure9"></a>
 <img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure9_table.png" style="padding:0;"/>
 <figcaption>
-<b>Figure 9</b>: We show superior performance compared to training a simple code-as-text classifier. <b>For complex, interactive programs, Play to Grade is the most data efficient solution.</b>
+<b>Figure 11</b>: We show superior performance compared to training a simple code-as-text classifier. <b>For complex, interactive programs, Play to Grade is the most data efficient solution.</b>
 </figcaption>
 {% endfigure %}
 
@@ -163,7 +170,7 @@ One promising direction for future work is to expand beyond pass/fail binary fee
 <a id="figure10"></a>
 <img class="postimage_50" src="{{ site.baseurl }}/assets/img/posts/2022-03-28-play-to-grade/figure10_multi.png" style="padding:0;"/>
 <figcaption>
-<b>Figure 10</b>: Each program has a binary label (correct or broken) associated with it. We only have 11 programs as our training data.
+<b>Figure 12</b>: Each program has a binary label (correct or broken) associated with it. We only have 11 programs as our training data.
 </figcaption>
 {% endfigure %}
 
@@ -181,7 +188,7 @@ Providing automated feedback for coding is an important area of research in comp
 
 This blog post is based on the following paper:
 
-- "Play to Grade: Testing Coding Games as Classifying Markov Decision Process." Allen Nie, Emma Brunskill, and Chris Piech. Advances in Neural Information Processing Systems 34 (2021).
+- "Play to Grade: Testing Coding Games as Classifying Markov Decision Process." Allen Nie, Emma Brunskill, and Chris Piech. Advances in Neural Information Processing Systems 34 (2021). [Link](https://arxiv.org/abs/2110.14615)
 
 ## Acknowledgements
 
@@ -206,3 +213,5 @@ Many thanks to Emma Brunskill, Chris Piech for their guidance on the project. Ma
 [^kipf]: Elise van der Pol, Thomas Kipf, Frans A Oliehoek, and Max Welling. Plannable approximations to mdp homomorphisms: Equivariance under actions. arXiv preprint arXiv:2002.11963, 2020.
 
 [^givan]: Robert Givan, Thomas Dean, and Matthew Greig. Equivalence notions and model minimization in markov decision processes. Artificial Intelligence, 147(1-2):163–223, 2003.
+
+[^playtograde]: Allen Nie, Emma Brunskill, and Chris Piech. "Play to Grade: Testing Coding Games as Classifying Markov Decision Process." Advances in Neural Information Processing Systems 34 (2021). [Link](https://arxiv.org/abs/2110.14615)
