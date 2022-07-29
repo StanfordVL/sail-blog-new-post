@@ -2,7 +2,7 @@
 layout: post
 title: "How does in-context learning work? A framework for understanding the differences from traditional supervised learning"
 short-summary: "A Bayesian inference framework for in-context learning in large language models."
-summary: "We provide a Bayesian inference framework for in-context learning in large language models like GPT-3 and some empirical evidence for it, including connections to how in-context learning can still work well despite randomizing the labels in few-shot examples."
+summary: "We provide a Bayesian inference framework for in-context learning in large language models like GPT-3 and show empirical evidence for our framework, including connections to how in-context learning can still work well despite randomizing the labels in few-shot examples."
 feature-img: "/assets/img/posts/2022-07-21-understanding-incontext/large_img.png"
 thumbnail: "/assets/img/posts/2022-07-21-understanding-incontext/thumbnail.png"
 author: <a href="https://cs.stanford.edu/~eix/">Sang Michael Xie</a> and <a href="https://shmsw25.github.io/">Sewon Min</a>
@@ -14,9 +14,9 @@ draft: True
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
 
 
-*In this post, we provide a Bayesian inference framework for in-context learning, a key emergent behavior in large language models like GPT-3, and some empirical evidence for it, highlighting the differences from traditional supervised learning. This blog post primarily draws from the theoretical framework for in-context learning from [An Explanation of In-context Learning as Implicit Bayesian Inference](https://arxiv.org/abs/2111.02080) [^BI] and experiments from [Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?](https://arxiv.org/abs/2202.12837) [^RRD], showing its unique learning behavior.*
+*In this post, we provide a Bayesian inference framework for in-context learning in large language models like GPT-3 and show empirical evidence for our framework, highlighting the differences from traditional supervised learning. This blog post primarily draws from the theoretical framework for in-context learning from [An Explanation of In-context Learning as Implicit Bayesian Inference](https://arxiv.org/abs/2111.02080) [^BI] and experiments from [Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?](https://arxiv.org/abs/2202.12837) [^RRD].*
 
-**TL;DR** – In-context learning is a mysterious emergent behavior in large language models (LMs) where the LM performs a task just by conditioning on input-output examples, without optimizing any parameters. In this post, we provide a Bayesian inference framework for understanding in-context learning as “locating” latent concepts the LM has acquired from pretraining data. This suggests that all components of the prompt (inputs, outputs, formatting, and the input-output mapping) can provide information for inferring the latent concept. We connect this framework to empirical evidence on how in-context learning still works when provided training examples with random outputs. While output randomization cripples traditional supervised learning algorithms, it only removes one source of information for Bayesian inference (the input-output mapping). Finally, we present missing gaps and avenues for future work and invite the community to join us in further understanding in-context learning.
+**TL;DR** – In-context learning is a mysterious emergent behavior in large language models (LMs) where the LM performs a task just by conditioning on input-output examples, without optimizing any parameters. In this post, we provide a Bayesian inference framework for understanding in-context learning as “locating” latent concepts the LM has acquired from pretraining data. This suggests that all components of the prompt (inputs, outputs, formatting, and the input-output mapping) can provide information for inferring the latent concept. We connect this framework to empirical evidence where in-context learning still works when provided training examples with random outputs. While output randomization cripples traditional supervised learning algorithms, it only removes one source of information for Bayesian inference (the input-output mapping). Finally, we present missing gaps and avenues for future work and invite the community to join us in further understanding in-context learning.
 
 ### Content
 1. [The mystery of in-context learning](#the-mystery-of-in-context-learning)
@@ -44,7 +44,7 @@ Two examples of in-context learning, where a language model (LM) is given a list
 {% endfigure %}
 
 
-**What can in-context learning do?** On many benchmark NLP benchmarks, in-context learning is competitive with models trained with much more labeled data and is state-of-the-art on LAMBADA (commonsense sentence completion) and TriviaQA (question answering). Perhaps even more exciting is the array of applications that in-context learning has enabled people to spin up in sometimes just a few hours, including writing code from natural language descriptions, helping with app design mockups, and generalizing spreadsheet functions:
+**What can in-context learning do?** On many benchmark NLP benchmarks, in-context learning is competitive with models trained with much more labeled data and is state-of-the-art on LAMBADA (commonsense sentence completion) and TriviaQA (question answering). Perhaps even more exciting is the array of applications that in-context learning has enabled people to spin up in just a few hours, including writing code from natural language descriptions, helping with app design mockups, and generalizing spreadsheet functions:
 
 {% figure %}
 <div style="display: inline-block; width: 33%"> <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Here&#39;s a sentence describing what Google&#39;s home page should look and here&#39;s GPT-3 generating the code for it nearly perfectly. <a href="https://t.co/m49hoKiEpR">pic.twitter.com/m49hoKiEpR</a></p>&mdash; Sharif Shameem (@sharifshameem) <a href="https://twitter.com/sharifshameem/status/1283322990625607681?ref\_src=twsrc%5Etfw">July 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </div>
@@ -56,7 +56,7 @@ Two examples of in-context learning, where a language model (LM) is given a list
 
 In-context learning allows users to quickly build models for a new use case without worrying about fine-tuning and storing new parameters for each task. It typically requires very few training examples to get a prototype working, and the natural language interface is intuitive even for non-experts.
 
-**Why is in-context learning surprising?** In-context learning is unlike conventional machine learning in that there’s no optimization of any parameters. This isn’t unique, however - meta-learning methods have trained models that learn from examples [^META]. The mystery is that the LM isn’t trained to learn from examples. Because of this, there’s seemingly a mismatch between pretraining (what it’s trained to do, which is next token prediction) and in-context learning (what we’re asking it to do).
+**Why is in-context learning surprising?** In-context learning is unlike conventional machine learning in that there’s no optimization of any parameters. However, this isn’t unique---meta-learning methods have trained models that learn from examples [^META]. The mystery is that the LM isn’t trained to learn from examples. Because of this, there’s seemingly a mismatch between pretraining (what it’s trained to do, which is next token prediction) and in-context learning (what we’re asking it to do).
 
 This seems like magic. How does in-context learning work?
 
@@ -83,7 +83,7 @@ we propose a framework in which the LM uses the in-context learning prompt to �
 We show that an LM trained (using next token prediction) on synthetic data with a latent concept structure can learn to do in-context learning. We hypothesize that a similar effect can occur in real pretraining data since text documents naturally have long-term coherence: sentences/paragraphs/table rows in the same document tend to share underlying semantic information (e.g., topic) and formatting (e.g., a FAQ page alternates between questions and answers). In our framework, the document-level latent concept creates long-term coherence, and modeling this coherence during pretraining requires learning to infer the latent concept:
 
 1. **Pretrain**: To predict the next token during pretraining, the LM must infer (“locate”) the latent concept for the document using evidence from the previous sentences.
-2. **In-context learning**: If the LM also infers the prompt concept using in-context examples in the prompt, then in-context learning occurs!
+2. **In-context learning**: If the LM also infers the prompt latent concept using in-context examples in the prompt, then in-context learning occurs!
 
 ### Bayesian inference view of in-context learning
 
@@ -138,14 +138,14 @@ Next, we aim to provide empirical evidence for the above framework through a set
 In [Min et al.](https://arxiv.org/abs/2202.12837), we compare three different methods:
 
 * **No-examples**: the LM conditions on the test input only, with no examples. This is typical zero-shot inference, first done by GPT-2/GPT-3.
-* **Examples with gold outputs**: the LM conditions on the concatenation of a few in-context examples and the test input. This is a typical in-context learning method, and by default, all outputs in the prompt are gold outputs.
+* **Examples with ground truth outputs**: the LM conditions on the concatenation of a few in-context examples and the test input. This is a typical in-context learning method, and by default, all outputs in the prompt are ground truth.
 * **Examples with random outputs**: the LM conditions on in-context examples and the test input, but now, each output in the prompt is randomly sampled from the output set (labels in the classification tasks; a set of answer options in the multi-choice tasks).
 
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image14.png"/>
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image5.png"/>
 <figcaption>
-The prompt with gold outputs (top) and the prompt with random outputs (bottom).
+The prompt with ground truth outputs (top) and the prompt with random outputs (bottom).
 </figcaption>
 {% endfigure %}
 
@@ -156,13 +156,13 @@ We experiment with 12 models whose sizes range from 774M to 175B, including the 
 {% figure %}
 <img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image3.png"/>
 <figcaption>
-Comparison between no-examples (blue), examples with gold outputs (yellow) and examples with random outputs (random). Replacing gold outputs with random outputs hurts performance significantly less than previously thought, and is still significantly better than no-examples.
+Comparison between no-examples (blue), examples with ground truth outputs (yellow) and examples with random outputs (random). Replacing ground truth outputs with random outputs hurts performance significantly less than previously thought, and is still significantly better than no-examples.
 </figcaption>
 {% endfigure %}
 
 In-context learning performance does not drop much when each output is replaced with a random output from the output set.
 
-First, as expected, using the examples with gold outputs significantly outperforms no-examples. Then, replacing gold outputs with random outputs only barely hurts performance. This means, unlike typical supervised learning, ground truth outputs are not really required to achieve good in-context learning performance, which is counter-intuitive!
+First, as expected, using the examples with ground truth outputs significantly outperforms no-examples. Then, replacing ground truth outputs with random outputs only barely hurts performance. This means, unlike typical supervised learning, ground truth outputs are not really required to achieve good in-context learning performance, which is counter-intuitive!
 
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image1.png"/>
@@ -173,7 +173,7 @@ Four different aspects of the concatenation of the in-context examples: the inpu
 
 If the correct input-output mapping has a marginal effect, which aspects of the prompt are most important for in-context learning?
 
-One possible aspect is the **input distribution**: the underlying distribution that inputs in the examples are from (the red text in the figure below). To quantify its impact, we design a variant of demonstrations where each in-context example consists of an input sentence that is randomly sampled from an external corpus (instead of the input from the training data). We then compare its performance with demonstrations with random labels. The intuition is that these two versions of demonstrations both do not keep the correct input-label correspondence, but only differ in whether or not it conditions on the correct input distribution.
+One possible aspect is the **input distribution**, i.e., the underlying distribution that inputs in the examples are from (the red text in the figure below). To quantify its impact, we design a variant of demonstrations where each in-context example consists of an input sentence that is randomly sampled from an external corpus (instead of the input from the training data). We then compare its performance with demonstrations with random labels. The intuition is that these two versions of demonstrations both do not keep the correct input-label correspondence, but only differ in whether or not the LM conditions on the correct input distribution.
 
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image9.png"/>
@@ -182,7 +182,7 @@ The input distribution matters: when the inputs in the prompt are replaced with 
 </figcaption>
 {% endfigure %}
 
-Results indicate that overall, the model with random sentences as inputs achieves significantly lower performance (up to 16% absolute). This indicates conditioning on the correct input distribution is important.
+Results indicate that overall, the model with random sentences as inputs achieves significantly lower performance (up to 16% absolute points worse). This indicates conditioning on the correct input distribution is important.
 
 {% figure %}
 <img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image7.png"/>
@@ -190,6 +190,8 @@ Results indicate that overall, the model with random sentences as inputs achieve
 The output space matters: when the outputs in the examples are replaced with random English unigrams, model performance significantly drops.
 </figcaption>
 {% endfigure %}
+
+
 
 Another aspect that may affect in-context learning is the **output space**: the set of outputs (classes or answer choices) in the task. To quantify its impact, we design a variant of demonstrations consisting of in-context examples with randomly paired, random English unigrams that are not related to the original labels of the task (e.g., “wave”). Results indicate that there is a significant performance drop when using this demonstration (up to 16% absolute). This indicates conditioning on the correct output space is important.<sup id="a5">[\[5\]](#f5)</sup> This is true even for a multi-choice task, likely because it still has a particular distribution of the choices (e.g., objects like “Bolts” and “Screws” in the OpenBookQA dataset) that the model uses.
 
@@ -246,11 +248,11 @@ Task descriptions (or instructions) in natural language can be used in the promp
 
 #### Understanding pretraining data for in-context learning
 
-While we propose that in-context learning comes from long-term coherence structure in the pretraining data (due to the latent concept structure), more work is needed to pinpoint exactly what elements of the pretraining data are the biggest contributors to in-context learning. Is there a critical subset of data from which in-context learning emerges, or is it a complex interaction between many types of data? Recent works give some hints about the kind of pretraining data needed to elicit in-context learning behaviors [^DDPD] [^OEPC]. A better understanding of the ingredients for in-context learning can help in constructing a more effective large-scale pretraining dataset.
+While we propose that in-context learning comes from long-term coherence structure in the pretraining data (due to the latent concept structure), more work is needed to pinpoint exactly what elements of the pretraining data are the biggest contributors to in-context learning. Is there a critical subset of data from which in-context learning emerges, or is it a complex interaction between many types of data? Recent works give some hints about the kind of pretraining data needed to elicit in-context learning behaviors [^DDPD] [^OEPC]. A better understanding of the ingredients for in-context learning can help construct a more effective large-scale pretraining dataset.
 
 #### Capturing effects from model architecture and training
 
-Our framework only describes the effect of pretraining data on in-context learning, but there can be effects from all the other parts of the ML pipeline. Model scale is one of them—many papers have shown the benefits of scale [^SCALE] [^GOPH] [^PALM]. Architecture (e.g., decoder-only vs. encoder-decoder) and objective (e.g., casual LM vs. masked LM) are other factors, as [^WLM] investigated in depth. Future work may investigate more on how the model behavior in in-context learning depends on the model scale and the choices of architecture and training objective.
+Our framework only describes the effect of pretraining data on in-context learning, but there can be effects from all the other parts of the ML pipeline. Model scale is one of them—many papers have shown the benefits of scale [^SCALE] [^GOPH] [^PALM]. Architecture (e.g., decoder-only vs. encoder-decoder) and objective (e.g., casual LM vs. masked LM) are other factors, as Wang et al [^WLM] investigated in depth. Future work may further investigate how the model behavior in in-context learning depends on the model scale and the choices of architecture and training objective.
 
 
 <hr />
@@ -264,7 +266,7 @@ In this blog post, we provide a framework where the LM does in-context learning 
 Acknowledgements
 ----------------
 
-We thank Megha Srivastava, Rishi Bommasani, Gabriel Ilharco, Jungo Kasai, Ananya Kumar, Percy Liang, Tengyu Ma, Ofir Press, Yasaman Razeghi, and Luke Zettlemoyer for their comments and suggestions on the blog post.
+We thank Rishi Bommasani, Gabriel Ilharco, Jungo Kasai, Ananya Kumar, Percy Liang, Tengyu Ma, Ofir Press, Megha Srivastava, Yasaman Razeghi, Luke Zettlemoyer and Michael Zhang for their comments and suggestions on the blog post.
 
 
 [^BI]: Sang Michael Xie, Aditi Raghunathan, Percy Liang, Tengyu Ma. An Explanation of In-context Learning as Implicit Bayesian Inference. International Conference on Learning Representations (ICLR), 2022.
