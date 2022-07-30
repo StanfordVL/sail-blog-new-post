@@ -201,7 +201,7 @@ Another aspect that may affect in-context learning is the **output space**: the 
 
 #### Connections to the Bayesian inference framework
 
-The fact that the LMs do not rely on the input-output correspondence in the prompt possibly means that the LMs might have been exposed to some notions of the input-output correspondence for the task during pretraining, and in-context learning is simply relying on them. Instead, all the components of the prompt (input distribution, the output space and format) are providing “evidence” to enable the model to better infer (locate) concepts that are learned during pretraining. The random input-output mapping still increases the “noise” due to concatenating random sequences together in the prompt. Nonetheless, based on our framework, the model still does Bayesian inference as long as there is still enough signal (such as the correct input distribution, output space, and format). Of course, having the correct input-output mapping can still help by providing more evidence and reducing noise.
+The fact that the LMs do not rely on the input-output correspondence in the prompt possibly means that the LMs might have been exposed to some notions of the input-output correspondence for the task during pretraining, and in-context learning is simply relying on them. Instead, all the components of the prompt (input distribution, the output space and format) are providing “evidence” to enable the model to better infer (locate) concepts that are learned during pretraining. The random input-output mapping still increases the “noise” due to concatenating random sequences together in the prompt. Nonetheless, based on our framework, the model still does Bayesian inference as long as there is still enough signal (such as the correct input distribution, output space, and format). Of course, having the correct input-output mapping can still help by providing more evidence and reducing noise, especially when the input-output mapping doesn't show up often in pretraining data.
 
 ### In-context learning performance is highly correlated with term frequencies during pretraining
 
@@ -266,7 +266,7 @@ In this blog post, we provide a framework where the LM does in-context learning 
 Acknowledgements
 ----------------
 
-We thank Luke Zettlemoyer, Percy Liang, Tengyu Ma, Rishi Bommasani, Gabriel Ilharco, Jungo Kasai, Ananya Kumar, Ofir Press, Yasaman Razeghi, Megha Srivastava, and Michael Zhang for their comments and suggestions on the blog post.
+We thank Rishi Bommasani, Gabriel Ilharco, Jungo Kasai, Ananya Kumar, Percy Liang, Tengyu Ma, Ofir Press, Yasaman Razeghi, Megha Srivastava, Luke Zettlemoyer, and Michael Zhang for their comments and suggestions on the blog post.
 
 
 [^BI]: Sang Michael Xie, Aditi Raghunathan, Percy Liang, Tengyu Ma. An Explanation of In-context Learning as Implicit Bayesian Inference. International Conference on Learning Representations (ICLR), 2022.
