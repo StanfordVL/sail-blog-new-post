@@ -3,8 +3,8 @@ layout: post
 title: "How does in-context learning work? A framework for understanding the differences from traditional supervised learning"
 short-summary: "A Bayesian inference framework for in-context learning in large language models."
 summary: "We provide a Bayesian inference framework for in-context learning in large language models like GPT-3 and show empirical evidence for our framework, including connections to how in-context learning can still work well despite randomizing the labels in few-shot examples."
-feature-img: "/assets/img/posts/2022-07-21-understanding-incontext/large_img.png"
-thumbnail: "/assets/img/posts/2022-07-21-understanding-incontext/thumbnail.png"
+feature-img: "/assets/img/posts/2022-08-01-understanding-incontext/large_img.png"
+thumbnail: "/assets/img/posts/2022-08-01-understanding-incontext/thumbnail.png"
 author: <a href="https://cs.stanford.edu/~eix/">Sang Michael Xie</a> and <a href="https://shmsw25.github.io/">Sewon Min</a>
 tags: [large language models, language models, gpt-3, in-context learning, few-shot learning, nlp, pretraining, bayesian inference, machine learning, deep learning]
 draft: True
@@ -37,7 +37,7 @@ Large language models (LMs) such as GPT-3 [^GPT] are trained on internet-scale t
 **What is in-context learning?** In-context learning was popularized in the original GPT-3 paper as a way to use language models to learn tasks given only a few examples.<sup id="a1">[\[1\]](#f1)</sup> During in-context learning, we give the LM a prompt that consists of a list of input-output pairs that demonstrate a task. At the end of the prompt, we append a test input and allow the LM to make a prediction just by conditioning on the prompt and predicting the next tokens. To correctly answer the two prompts below, the model needs to read the training examples to figure out the input distribution (financial or general news), output distribution (Positive/Negative or topic), input-output mapping (sentiment or topic classification), and the formatting.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image13.gif" style="width: 88%" />
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image13.gif" style="width: 88%" />
 <figcaption>
 Two examples of in-context learning, where a language model (LM) is given a list of training examples (black) and a test input (green) and asked to make a prediction (orange) by predicting the next tokens/words to fill in the blank.
 </figcaption>
@@ -73,7 +73,7 @@ In [Xie et al.](https://arxiv.org/abs/2111.02080),
 we propose a framework in which the LM uses the in-context learning prompt to “locate” a previously learned concept to do the in-context learning task. For example (see figure below), in our framework, the LM uses the training examples to internally figure out that the task is either sentiment analysis (left) or topic classification (right) and apply the same mapping to the test input. 
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image11.gif" />
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image11.gif" />
 {% endfigure %}
 
 **What’s a concept?** We can think of a concept as a latent variable that contains various document-level statistics. For example, a “news topics” concept describes a distribution of words (news and their topics), a format (the way that news articles are written), a relation between news and topics, and other semantic and syntactic relationships between words. In general, concepts may be a combination of many latent variables that specify different aspects of the semantics and syntax of a document, but we simplify here by grouping them all into one concept variable.
@@ -96,7 +96,7 @@ Before we get into the Bayesian inference view, let’s set up the in-context le
 The process of “locating” learned capabilities can be viewed as Bayesian inference of a prompt concept that every example in the prompt shares. If the model can infer the prompt concept, then it can be used to make the correct prediction on the test example. Mathematically, the prompt provides evidence for the model (\\(p\\)) to sharpen the posterior distribution over concepts, \\(p(\text{concept} \mid \text{prompt})\\). If \\(p(\text{concept} \mid \text{prompt})\\) is concentrated on the prompt concept, the model has effectively “learned” the concept from the prompt.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image8.png"/>
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image8.png"/>
 {% endfigure %}
 
 Ideally, \\(p(\text{concept} \mid \text{prompt})\\) concentrates on the prompt concept with more examples in the prompt so that the prompt concept is “selected” through marginalization.
@@ -106,7 +106,7 @@ Ideally, \\(p(\text{concept} \mid \text{prompt})\\) concentrates on the prompt c
 The logical leap in the explanation is that the LM will infer the prompt concept from in-context examples, even though prompts are sampled from the prompt distribution, which can be very different from the pretraining distribution that the LM trained on. Prompts concatenate independent training examples together, so the transitions between examples can be very low-probability under the LM (and the pretraining distribution), and can introduce noise into the inference process. For example, concatenating independent sentences about different news topics may result in very atypical text, since none of the sentences have sufficient context. Interestingly, the LM can still do Bayesian inference despite the mismatch between the pretraining and prompt distributions, as seen empirically in GPT-3. We prove that in-context learning via Bayesian inference can emerge from latent concept structure in the pretraining data in a simplified theoretical setting and use this to generate a synthetic dataset where in-context learning emerges for both Transformers and LSTMs.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image6.gif"/>
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image6.gif"/>
 <figcaption>
 Green arrows represent the signal about the latent prompt concept from the training examples, while red arrows represent noise from low-probability transitions between examples.
 </figcaption>
@@ -142,8 +142,8 @@ In [Min et al.](https://arxiv.org/abs/2202.12837), we compare three different me
 * **Examples with random outputs**: the LM conditions on in-context examples and the test input, but now, each output in the prompt is randomly sampled from the output set (labels in the classification tasks; a set of answer options in the multi-choice tasks).
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image14.png"/>
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image5.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image14.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image5.png"/>
 <figcaption>
 The prompt with ground truth outputs (top) and the prompt with random outputs (bottom).
 </figcaption>
@@ -154,7 +154,7 @@ In particular, the approach “Examples with random outputs” hasn’t been tri
 We experiment with 12 models whose sizes range from 774M to 175B, including the largest GPT-3 (Davinci). Models are evaluated on 16 classification datasets and 10 multi-choice datasets.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image3.png"/>
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image3.png"/>
 <figcaption>
 Comparison between no-examples (blue), examples with ground truth outputs (yellow) and examples with random outputs (random). Replacing ground truth outputs with random outputs hurts performance significantly less than previously thought, and is still significantly better than no-examples.
 </figcaption>
@@ -165,7 +165,7 @@ In-context learning performance does not drop much when each output is replaced 
 First, as expected, using the examples with ground truth outputs significantly outperforms no-examples. Then, replacing ground truth outputs with random outputs only barely hurts performance. This means, unlike typical supervised learning, ground truth outputs are not really required to achieve good in-context learning performance, which is counter-intuitive!
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image1.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image1.png"/>
 <figcaption>
 Four different aspects of the concatenation of the in-context examples: the input-output mapping, the input distribution, the output space and the format.
 </figcaption>
@@ -176,7 +176,7 @@ If the correct input-output mapping has a marginal effect, which aspects of the 
 One possible aspect is the **input distribution**, i.e., the underlying distribution that inputs in the examples are from (the red text in the figure below). To quantify its impact, we design a variant of demonstrations where each in-context example consists of an input sentence that is randomly sampled from an external corpus (instead of the input from the training data). We then compare its performance with demonstrations with random labels. The intuition is that these two versions of demonstrations both do not keep the correct input-label correspondence, but only differ in whether or not the LM conditions on the correct input distribution.
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image9.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image9.png"/>
 <figcaption>
 The input distribution matters: when the inputs in the prompt are replaced with random inputs from an external corpus (the CC News corpus), model performance significantly drops.
 </figcaption>
@@ -185,7 +185,7 @@ The input distribution matters: when the inputs in the prompt are replaced with 
 Results indicate that overall, the model with random sentences as inputs achieves significantly lower performance (up to 16% absolute points worse). This indicates conditioning on the correct input distribution is important.
 
 {% figure %}
-<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image7.png"/>
+<img class="postimage_75" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image7.png"/>
 <figcaption>
 The output space matters: when the outputs in the examples are replaced with random English unigrams, model performance significantly drops.
 </figcaption>
@@ -196,7 +196,7 @@ The output space matters: when the outputs in the examples are replaced with ran
 Another aspect that may affect in-context learning is the **output space**: the set of outputs (classes or answer choices) in the task. To quantify its impact, we design a variant of demonstrations consisting of in-context examples with randomly paired, random English unigrams that are not related to the original labels of the task (e.g., “wave”). Results indicate that there is a significant performance drop when using this demonstration (up to 16% absolute). This indicates conditioning on the correct output space is important.<sup id="a5">[\[5\]](#f5)</sup> This is true even for a multi-choice task, likely because it still has a particular distribution of the choices (e.g., objects like “Bolts” and “Screws” in the OpenBookQA dataset) that the model uses.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image12.png"/>
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image12.png"/>
 {% endfigure %}
 
 #### Connections to the Bayesian inference framework
@@ -208,8 +208,8 @@ The fact that the LMs do not rely on the input-output correspondence in the prom
 Razeghi et al. [^IPTF] evaluate GPT-J on various numeric tasks, and find that in-context learning performance is highly correlated with how many times the terms in each instance (numbers and units) appear in the pretraining data of GPT-J (The PILE).
 
 {% figure %}
-<img src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image4.png" style="display:inline-block; width: 49%"/>
-<img src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image10.png" style="display:inline-block; width: 49%"/>
+<img src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image4.png" style="display:inline-block; width: 49%"/>
+<img src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image10.png" style="display:inline-block; width: 49%"/>
 <figcaption>
 Correlation between term frequency (x-axis) and in-context learning performance (y-axis). From left to right: addition, multiplication, addition with no task indication in the prompt, and multiplication with no task indication in the prompt. Figures from Razeghi et al.
 </figcaption>
@@ -236,7 +236,7 @@ Our framework suggests that the model is “localizing” or “retrieving” co
 Nonetheless, Bayesian inference could still explain some forms of extrapolation if we view a concept as a composition of many latent variables. For example, consider a latent variable representing syntax and another variable representing semantics. Bayesian inference can combinatorially generalize to new semantics-syntax pairs even if the model has not seen all the pairs during pretraining. General operations like permutation, swapping, and copying are useful during pretraining and can help extrapolation when composed (e.g., label permutation in the sport-to-animal case). More work is needed to model how in-context learning can work on unseen tasks.
 
 {% figure %}
-<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-07-21-understanding-incontext/images/image2.png"/>
+<img class="postimage" src="{{ site.baseurl }}/assets/img/posts/2022-08-01-understanding-incontext/images/image2.png"/>
 <figcaption>
 An example synthetic task with unusual semantics that GPT-3 can successfully learn. A modified figure from Rong.
 </figcaption>
