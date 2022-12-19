@@ -3,7 +3,7 @@ layout: post
 title: "From Discriminaiton in Machine learning to discrimination in Law, Part 1: Disparate Treatment
 "
 short-summary: "A Summery of the legal procedure for proving discrimination and its anlogy to machine learning focusing on disparate treatment"
-summary: ""
+summary: "In this post we discuss the concept of discrimination in the context of both law and machine learning with the focus on disparate treatment. The first section covers the definition of disparate treatment and the legal procedure for establishing a prima facie case. The following sections cover the steps involved in rebutting and proving pretext in a legal case. For each section we discuss their corresponding analogies in machine learning."
 feature-img: "{{ site.baseurl }}/assets/img/posts/2022-12-05-discrimination_in_ML_and_law/feature.png"
 thumbnail: "{{ site.baseurl }}/assets/img/posts/2022-12-05-discrimination_in_ML_and_law/thumbnail.png"
 author: <a href="fereshte-khani.github.io">Fereshte Khani</a>, <a href=https://cs.stanford.edu/~pliang"> Percy Liang</a>
