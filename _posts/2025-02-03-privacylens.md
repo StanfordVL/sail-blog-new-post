@@ -4,8 +4,8 @@ title: "PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Act
 short-summary: "Having an agent to do tasks for you is cool. But does your language model agent respect privacy norms?"
 summary: "Having an agent handle tasks for you is cool. But does your language model agent respect privacy norms?"
 subtitle: "PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Action"
-feature-img: "assets/img/posts/2025-01-29-teaching/tutorcopilot.001.jpeg"
-thumbnail: "assets/img/posts/2025-01-29-teaching/tutorcopilot.001.jpeg"
+feature-img: "assets/img/posts/2025-02-03-privacylens/privacylens-thumbnail.png"
+thumbnail: "assets/img/posts/2025-02-03-privacylens/privacylens-thumbnail.png"
 author: <a href='https://cs.stanford.edu/~shaoyj/'>Yijia Shao</a> and <a href='https://cs.stanford.edu/~diyiy/'>Diyi Yang</a>
 tags: [NLP, privacy, AI, agent, human-AI interaction]
 ---
