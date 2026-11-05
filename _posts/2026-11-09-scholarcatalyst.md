@@ -98,7 +98,7 @@ So far, the field has mostly studied retrieval in relatively easy settings where
 - arXiv blog, “[Fair Moderation, Equitable Access, and AI: arXiv’s Updated Rate Limit Policy](https://blog.arxiv.org/2026/10/01/updated-rate-limit-policy/),” 2026.
 - Jacob Xiaochen Li, “[Machine Studying](https://jacobxli.com/blog/2026/machine-studying/),” 2026.
 - Jack Morris, “[How to Train the Best Embedding Model in the World](https://x.com/jxmnop/article/2031051636068782402),” 2026.
-- Diane Tchuindjo et al., “[OBLIQ Bench: Exposing Overlooked Bottlenecks in Modern Retrievers with Latent and Implicit Queries](https://arxiv.org/abs/2605.06235),” 2026.
+- Diane Tchuindjo et al., “[OBLIQ-Bench: Exposing Overlooked Bottlenecks in Modern Retrievers with Latent and Implicit Queries](https://arxiv.org/abs/2605.06235),” 2026.
 - Sohyeon Kim and Yoonho Lee et al., “[ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research](https://arxiv.org/abs/2610.02202),” 2026.
 - Typesafeai, “[Introducing System One Models & Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev),” 2026.
 - Wan et al., “[Retriever-Free Retrieval: Navigating Documents with Decision Models](https://arxiv.org/pdf/2610.35868),” 2026.
@@ -124,10 +124,10 @@ Finally, we’re grateful to the Laude Institute for supporting our continued ex
   month  = "Nov",
   url    = "https://ai.stanford.edu/blog/scholarcatalyst/" }</pre>
 
-This post is based on our paper ScholarCatalyst: A Benchmark for Retrieving Papers that Inspire New Research ([Paper](https://arxiv.org/abs/2610.02202), [Data](https://huggingface.co/ScholarCatalyst), [Code](https://github.com/stanford-iris-lab/ScholarCatalyst))
+This post is based on our paper ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research ([Paper](https://arxiv.org/abs/2610.02202), [Data](https://huggingface.co/ScholarCatalyst), [Code](https://github.com/stanford-iris-lab/ScholarCatalyst))
 
 <pre style="background:#f6f8fa;color:#24292e;padding:1em;border-radius:6px;white-space:pre-wrap;word-break:break-word;">@article{kim2026scholarcatalyst,
-  title   = {ScholarCatalyst: A Benchmark for Retrieving Papers that Inspire New Research},
+  title   = {ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research},
   author  = {Kim, Sohyeon and Lee, Yoonho and Liu, Bo and Ko, Dayoon and Shao, Rulin and Kim, Seungone and Neubig, Graham and Koh, Pang Wei and Chowdhery, Aakanksha and Asai, Akari and Khattab, Omar and Choi, Yejin and Kim, Gunhee and Finn, Chelsea},
   journal = {arXiv preprint arXiv:2610.02202},
   year    = {2026} }</pre>
@@ -146,6 +146,6 @@ This post is based on our paper ScholarCatalyst: A Benchmark for Retrieving Pape
 [^swanson]: Don R. Swanson, “Undiscovered Public Knowledge,” The Library Quarterly 56(2), 103–118, 1986.
 [^li]: Jacob Xiaochen Li, “[Machine Studying](https://jacobxli.com/blog/2026/machine-studying/),” 2026.
 [^kahneman2009]: Daniel Kahneman and Gary Klein, “Conditions for Intuitive Expertise,” 2009.
-[^obliq]: Diane Tchuindjo et al., “[OBLIQ Bench: Exposing Overlooked Bottlenecks in Modern Retrievers with Latent and Implicit Queries](https://arxiv.org/abs/2605.06235),” 2026.
+[^obliq]: Diane Tchuindjo et al., “[OBLIQ-Bench: Exposing Overlooked Bottlenecks in Modern Retrievers with Latent and Implicit Queries](https://arxiv.org/abs/2605.06235),” 2026.
 [^morris]: Jack Morris, “[How to Train the Best Embedding Model in the World](https://x.com/jxmnop/article/2031051636068782402),” 2026.
 [^scholarcatalyst2]: Sohyeon Kim and Yoonho Lee et al., “[ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research](https://arxiv.org/abs/2610.02202),” 2026.
