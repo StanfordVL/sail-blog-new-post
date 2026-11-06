@@ -3,8 +3,8 @@ layout: post
 title: "Research Intuition as a Retrieval Task"
 short-summary: "Open-ended discovery requires not only strong reasoning but also the intuition to spot promising directions. We argue retrievers can learn this intuition and introduce ScholarCatalyst, a benchmark built from researchers’ judgments about which papers are worth building on."
 summary: "Open-ended discovery requires not only strong reasoning but also the intuition to spot promising directions. We argue retrievers can learn this intuition and introduce ScholarCatalyst, a benchmark built from researchers’ judgments about which papers are worth building on."
-feature-img: "/assets/img/posts/2026-11-09-scholarcatalyst/fig1.png"
-thumbnail: "/assets/img/posts/2026-11-09-scholarcatalyst/thumbnail.png"
+feature-img: "/assets/img/posts/2026-11-05-scholarcatalyst/fig1.png"
+thumbnail: "/assets/img/posts/2026-11-05-scholarcatalyst/thumbnail.png"
 author: <a href="https://ohmyksh.github.io/">Sohyeon Kim</a> and <a href="https://yoonholee.com/">Yoonho Lee</a>
 tags: [information retrieval, scientific discovery, research taste, benchmark, agents]
 draft: True
@@ -21,7 +21,7 @@ Exploring an open-ended space of possibilities requires quickly identifying prom
 Most recent progress in AI has come from scaling deliberate reasoning. Models that think longer or explore many paths in parallel now reach striking results on hard problems[^openaia][^openaib]. However, reasoning still depends on what it is given to reason about. For open-ended problems, much of the difficulty lies in deciding what is worth thinking about, especially when the space of possible connections far exceeds what a model can assess individually. Intuition begins exploration by narrowing a vast space to a few promising candidates for further investigation.
 
 {% figure %}
-<img class="postimage" style="width:100%;display:block;margin:auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-09-scholarcatalyst/fig1.png"/>
+<img class="postimage" style="width:100%;display:block;margin:auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-05-scholarcatalyst/fig1.png"/>
 <figcaption style="color:#777;">
 Research intuition acts as an upstream retrieval step in open-ended discovery, surfacing a few promising candidates (including distant connections) from a vast possibility space for subsequent reasoning and decision-making.
 </figcaption>
@@ -46,7 +46,7 @@ In scientific research, this intuition (often called *taste*) helps researchers 
 To study this capability, we built ScholarCatalyst, a benchmark that evaluates retrieval at the earliest stage of research. Given an initial research idea, systems must retrieve *catalyst* papers that project authors judge could help advance their work. Because published records rarely capture which papers could have helped a project, we collected these judgments directly from 184 lead authors across 207 recent computer science projects. The benchmark contains about 191k computer science papers, providing a constrained test of literature search[^scholarcatalyst].
 
 {% figure %}
-<img class="postimage" style="width:90%;display:block;margin:0.8em auto 0 auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-09-scholarcatalyst/fig2.png"/>
+<img class="postimage" style="width:90%;display:block;margin:0.8em auto 0 auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-05-scholarcatalyst/fig2.png"/>
 <figcaption style="color:#777;">
 ScholarCatalyst asks whether a system can retrieve prior papers that inspire progress on a research project. Such a paper may share little semantic similarity with the question yet offer an insight that advances the project (right), while topically related work may not (left).
 </figcaption>
@@ -59,7 +59,7 @@ Our results reveal a gap between current retrieval systems and expert research i
 Agents use reasoning to formulate queries and guide later searches, but they access the corpus through embedding- or grep-based retrieval. At each step, they inspect only the small set of candidates those tools return, not the full literature. If a search misses a catalyst paper and later searches fail to recover it, the agent never gets a chance to reason about it. This makes candidate coverage, how systems search a vast corpus and surface a small set of candidates, a central bottleneck.
 
 {% figure %}
-<img class="postimage" style="width:95%;display:block;margin:auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-09-scholarcatalyst/fig3.png"/>
+<img class="postimage" style="width:95%;display:block;margin:auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-05-scholarcatalyst/fig3.png"/>
 <figcaption style="color:#777;">
 Current systems still struggle to find catalyst papers. Agentic search doesn’t beat embedding retrieval, even with the same retrieval tool underneath. Even Fable 5.1 finds only about half, despite potentially seeing the finished papers during training.
 </figcaption>
@@ -68,7 +68,7 @@ Current systems still struggle to find catalyst papers. Agentic search doesn’t
 <span style="color:#000;font-weight:bold;">2. Recognition Could Help Us Hill Climb Toward Better Retrieval.</span> Our results point to a potential signal for future progress. We also find a gap between *finding* a gold candidate and *recognizing* its value. **Systems may miss catalyst papers, but stronger models can recognize their value once they see it.** When we add these missed catalyst papers to the candidate list, stronger models are more likely to rank them among the top results. This suggests that their ability to recognize promising papers could provide feedback to improve retrieval over time.
 
 {% figure %}
-<img class="postimage" style="width:65%;display:block;margin:auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-09-scholarcatalyst/fig4.png"/>
+<img class="postimage" style="width:65%;display:block;margin:auto;" src="{{ site.baseurl }}/assets/img/posts/2026-11-05-scholarcatalyst/fig4.png"/>
 <figcaption style="color:#777;">
 Stronger models are better at recognizing relevant papers once they are shown. For Claude Fable, adding missed inspiration papers to the candidate pool raises Recall@5 from about 27% to 50%.
 </figcaption>
@@ -117,20 +117,29 @@ Finally, we’re grateful to the Laude Institute for supporting our continued ex
 ## Citation
 {: style="margin-top:1.5em;"}
 
-<pre style="background:#f6f8fa;color:#24292e;padding:1em;border-radius:6px;white-space:pre-wrap;word-break:break-word;">@article{kim2026rethinking,
+```
+@article{kim2026rethinking,
   title  = "Research Intuition as a Retrieval Task",
   author = "Kim, Sohyeon and Lee, Yoonho",
   year   = "2026",
   month  = "Nov",
-  url    = "https://ai.stanford.edu/blog/scholarcatalyst/" }</pre>
+  url    = "https://ai.stanford.edu/blog/scholarcatalyst/"
+}
+```
 
 This post is based on our paper ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research ([Paper](https://arxiv.org/abs/2610.02202), [Data](https://huggingface.co/ScholarCatalyst), [Code](https://github.com/stanford-iris-lab/ScholarCatalyst))
 
-<pre style="background:#f6f8fa;color:#24292e;padding:1em;border-radius:6px;white-space:pre-wrap;word-break:break-word;">@article{kim2026scholarcatalyst,
+```
+@article{kim2026scholarcatalyst,
   title   = {ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research},
-  author  = {Kim, Sohyeon and Lee, Yoonho and Liu, Bo and Ko, Dayoon and Shao, Rulin and Kim, Seungone and Neubig, Graham and Koh, Pang Wei and Chowdhery, Aakanksha and Asai, Akari and Khattab, Omar and Choi, Yejin and Kim, Gunhee and Finn, Chelsea},
+  author  = {Kim, Sohyeon and Lee, Yoonho and Liu, Bo and Ko, Dayoon and
+             Shao, Rulin and Kim, Seungone and Neubig, Graham and Koh, Pang Wei and
+             Chowdhery, Aakanksha and Asai, Akari and Khattab, Omar and Choi, Yejin and
+             Kim, Gunhee and Finn, Chelsea},
   journal = {arXiv preprint arXiv:2610.02202},
-  year    = {2026} }</pre>
+  year    = {2026}
+}
+```
 
 [^arxiv]: The volume of scientific literature continues to grow with no sign of slowing. [arXiv](https://x.com/arxiv/status/2105735352497410522?s=20) recently reported more than 3 million submissions in one year, which is over 40K in a single month, and a 6x increase in cs.AI submissions in two years. As the search space expands, quickly identifying papers that could advance a project becomes increasingly important. 
 [^recognition]: Recognition Asymmetry: Models may be better at *recognizing* (verifying) a candidate’s value once it is shown to them than at *retrieving* it from a large corpus.
